@@ -92,3 +92,482 @@ html.transition *:after {
   transition: all 750ms !important;
   transition-delay: 0 !important;
 }
+
+.container{
+    display:grid;
+    grid-template-rows:1fr 1fr 1fr;
+    margin:.8em 1.2em;
+    
+}
+
+.graphics img{
+    width:100%;
+    height:100%;
+}
+.graphics{
+    margin-top:1em;
+    padding-top:.5em;
+    margin-bottom:0; 
+    height:100%;
+
+}
+#exit .fa{
+    color:var(--font1);
+    cursor: pointer;
+    margin-right:.1em;
+    margin-top:.1em;
+}
+
+.hide-mobile{
+    display:none;
+}
+.hide-desktop .fa {
+    font-size:20pt;
+    color:var(--font1);
+    margin-right: 1em;
+    
+    
+}
+
+.logo{
+    width:120px;
+    cursor: pointer;
+    margin-left: .75em;
+}
+
+header{
+    display:flex;
+    justify-content: space-between;
+    margin-top:0;
+    padding:.9em .5em .2em .5em;
+    position:fixed;
+    background:var(--bg);
+    width:100%;
+    top:0;   
+    
+}
+.call-to-action{
+    text-align: center;
+    
+    height:100%;
+    width:100%;
+}
+
+.showcase{
+    
+    display:grid;
+    grid-template-rows: repeat(auto-fit, minmax(70px, 1fr));
+    grid-gap: 30px;
+    height:100%;
+    width:100%;
+    
+}
+.showcase p{
+    font-size: 1em;
+}
+
+.feature{
+    background:var(--div-color);
+    padding:1em;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border-radius:16px;
+}
+
+.feature p h3{
+    margin:0;
+    padding:0;
+}
+.feature h3{
+    font-weight:bold;
+    color:var(--font1);
+}
+.feature p{
+    color:var(--font1);
+}
+
+.heading{
+    font-size:2.4em;
+    font-weight:700;
+    color:var(--font2);
+}
+
+.call-to-action p{
+    font-size: 1.4em;
+    margin-top:0;
+    color:var(--font1);
+
+}
+.button{
+    text-decoration: none;
+    color:var(--bg);
+    background: var(--base);
+    margin-top:1.7em;
+    
+    padding: .5em 1.75em;
+    display:block;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-size: 1em;
+    box-shadow: var(--box-shadow1);
+    border-radius:15px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+
+
+.toggle-container{
+    margin-top:-.5em;
+    margin-left:16em;
+    position:fixed;
+}
+
+.footer{
+    background:var(--div-color);
+    text-align:center ;
+    color:var(--font1);
+    margin-bottom: 0;
+    padding:.2em;
+    margin-top:2em;
+    font-weight:bold;
+   
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+nav ul{
+    position: fixed;
+    width:60%;
+    top:0;
+    right:0;
+    text-align: left;
+    background: var(--div-color);
+    opacity:0.89;
+    height:80%;
+    padding-top: 2em;
+    margin-bottom: 2em;
+}
+nav ul li a{
+    color:var(--font1);
+    text-decoration: none;
+    display: block;
+    width:100%;
+    text-align:center;
+    padding:2em 0;
+    font-weight:bold; 
+}
+.exit-btn{
+    margin-bottom: 1em;
+    margin-top:-1.4em;
+    text-align:right;
+    padding:0 1.6em;
+    color:var(--font1);
+}
+
+header a img:focus{
+    outline:none;
+}
+
+.register-form{
+    display:grid;
+    grid-template-rows:.5fr 1fr auto;
+    margin:2em 1em;
+    grid-template-columns: 300x;
+    
+}
+
+.confirm--registration{
+    background:rgb(68, 211, 151);
+    color:white;
+    margin:3em 2em;
+    padding:1em;
+    display:none;
+    border-radius:14px;
+    text-align:center;
+}
+
+.happy-cash{
+    width:100%;
+    height:100%;
+    object-fit:contain ;
+    margin-top:1em 0 -5em 0;
+    
+}
+.register-illustration{
+    margin-bottom:-2em;
+   
+}
+.form-container{
+    background:var(--div-color);
+    padding:.7em 3em;
+    margin:.5em 1em;
+    box-shadow: var(--box-shadow);
+    border-radius:16px;
+    
+    
+    
+}
+.form-container h1{
+    text-align: center;
+}
+.form-container h1,h2,h3,h4,p{
+    color:var(--font1);
+}
+
+label[for=firstName],
+label[for=tenor],
+label[for=lastName],
+label[for=email],
+label[for=amount],
+label[for=payment],
+label[for=password],
+label[for=address]{
+    display: block;
+    margin-bottom:.2em;
+    text-transform:capitalize; 
+    color:var(--font1);
+   
+}
+
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=text]{
+    margin-bottom:1.5em;
+    margin-right: 1em;
+    display:block;
+    background:var(--div-color2);
+    border:1px solid var(--base);
+    border-radius:16px;
+    padding:.4em;
+    width:100%;
+    color:var(--font1);
+}
+
+::placeholder{
+    padding-left:1em;
+    line-height: 1.7
+    
+}
+input[type=email],
+input[type=password],
+input[type=text]:focus{
+    outline:none;
+}
+h2{
+    text-align:center;
+}
+
+button{
+    display:block;
+    padding:1em 1.7em;
+    background:var(--base);
+    color:var(--bg);
+    border:none;
+    margin:2.5em 1em 2em 0;
+    text-transform: uppercase;
+    border-radius:16px;
+    width:100%;
+    font-weight: bold;
+    box-shadow: var(--box-shadow1);
+    cursor: pointer;
+    transform: scaleX(1);
+    transition: transform ease-in-out .25s;
+
+}
+
+
+button:focus{
+    outline:none;
+    transform:scaleX(1.1);
+}
+
+#admin-header{
+    margin-bottom:3em;
+    margin-top:1em;
+}
+.form p{
+    text-align: center;
+}
+.form p a{
+    text-decoration:none;
+    font-weight:bold; 
+}
+
+.details{
+    display:grid;
+    grid-template-rows: auto auto 1fr 1fr;
+    margin:5em .8em;
+}
+.details h1{
+    text-align: center;
+    color:var(--base);
+}
+
+.status-bar{
+    display:grid;
+    background:var(--div-color2);
+    grid-template-columns:repeat(2, 1fr); 
+    width:100%;
+    border-radius:16px;
+    
+   
+    
+}
+.application-modal{
+    padding-top:3em; 
+}
+
+#repay{
+    margin-top:10em;
+    
+}
+
+.status-bar a{
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    padding:1em .6em;
+    font-weight: bold;
+    margin:0 .7em;
+    background:inherit;
+    border-radius:16px;
+    
+}
+.status-bar a:focus {   
+    outline:none;
+    
+}
+
+
+.loan-application img{
+    width:40%;
+    margin-left:8em;
+    background:var(--font1);
+    padding:1em;
+    border-radius: 15%;
+}
+
+.loan-application{
+    text-align:center;
+    display:flex;
+    flex-direction:column; 
+    align-content: center;
+    justify-content: center;
+}
+.loan-application h2{
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin:2em 0;
+}
+.loan-application h2 p{
+    color:var(--box);
+
+}
+
+.history{
+    margin-top:.7em;
+    display:grid;
+    grid-template-rows: 1fr;
+}
+.payments h2{
+    margin-left: 1em;
+    text-align:center;
+    text-transform: uppercase;
+}
+#repay{
+    margin-top:7em;
+}
+
+.wrapper{
+   
+   margin:0;
+    
+}
+
+.history-content h3{
+    font-weight:normal; 
+}
+
+.admin{
+    margin:7em 1em;
+
+}
+.admin-bar{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr); 
+}
+.admin-bar a{
+    font-size: 13px; 
+    
+    width:inherit;
+}
+.admin h1{
+    text-align:center ;
+    color:var(--base);
+}
+
+.test{
+    display:flex;
+    min-height:100vh;
+    flex-direction: column;
+}
+.admin h2{
+    margin-top:5em;
+    text-transform: uppercase;
+    margin-bottom:1em;
+}
+.verify-user{
+    margin-top:5em;
+    height:100%;
+    
+}
+
+.verification h3{
+    font-weight:normal 
+}
+
+.applications h4{
+    margin:0;
+    font-weight:normal;
+    text-transform: capitalize;
+    font-size:14px;
+    
+}
+.applications{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    align-content: flex-start;
+    justify-items: start;
+    padding-left:1em;
+    padding-top:1.8em;
+}
+
+.fourOfour-page{
+    display:grid;
+    grid-template-rows: 1fr .5fr;
+    margin:8em 2em;
+    align-items:center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    text-align: center;
+
+}
+
+
+.fourOfour-page img{
+    width:70%;
+}
+
+.fourOfour-content a{
+    margin-top:5em;
+}
