@@ -50,3 +50,20 @@ checkbox.addEventListener('click', function(){
     }
 
 });
+
+
+
+
+let feedBack = document.querySelector('.register-btn');
+feedBack.addEventListener('click', (e)=>{
+    let confirm= document.querySelector('.confirm--registration');
+    confirm.innerHTML= `<p>registration successful</p>`;
+    confirm.style.display='block';
+
+    setTimeout(()=>{
+        confirm.style.display='none';
+    },3000)
+
+    e.preventDefault();
+
+});
