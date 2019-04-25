@@ -200,6 +200,8 @@ header{
     color:var(--font1);
 
 }
+
+
 .button{
     text-decoration: none;
     color:var(--bg);
@@ -944,13 +946,18 @@ button{
    }
 
    .how-it-works{
-       height:100%;
-       display:grid;
-       grid-template-rows:1fr auto; 
+       height:60%;
+       margin-left:10%; 
    }
 
    .fourOfour-page img{
     width:50%;
+}
+
+
+.about{
+    margin-left:65%;
+    width:80%;
 }
 
    
