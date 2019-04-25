@@ -571,3 +571,391 @@ button:focus{
 .fourOfour-content a{
     margin-top:5em;
 }
+
+@media only screen and (min-width:650px){
+
+    .graphics img{
+        width:60%;
+        margin-left:5em;
+    }
+    button{
+        display:inline-block;
+        width:40%;
+    }
+
+    .showcase{
+        margin-top:-7%;
+    }
+
+    .feature p {
+        font-size: 20px;
+    }
+    .showcase{
+        width:70%;
+        margin-left:7.5em;
+        
+    }
+    .call-to-action a{
+        text-align:center;
+        text-transform: uppercase;
+        border-radius:6px;  
+    }
+    .repayment-btn{
+        display:inline-block;
+        width:30%;   
+    }
+    .admin-btn{
+        display:inline-block;
+        width:30%;
+    }
+}
+
+@media only screen and (min-width:840px){
+    .graphics img{
+        width:50%;
+        margin-left: 9em;
+    }
+    .call-to-action a{
+        width:30%;
+        display:inline-block;
+    }
+    input[type=email],
+input[type=password],
+input[type=text]{
+    padding:.75em;
+}
+.payments-form{
+    width:50%;
+}
+
+.history-content{
+    width:50%;
+}
+
+.verification button{
+    display:inline-block;
+    width:30%;
+}
+
+.verify-user{
+    width:30%;
+    margin-left:30%; 
+}
+button{
+    display:inline-block;
+    width:40%;
+}
+.form-container{
+    width:50%;
+}
+.showcase{
+    grid-area: showcase;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin-top: 7em;
+    align-content: center;
+    margin-left: auto;
+    margin-right:auto;
+    grid-gap:50px;
+    
+}
+.feature{
+    height:50%;
+    display:grid;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+}
+.feature h3{
+    margin:0;
+    
+}
+.feature p{
+    margin:0;
+    
+}
+.register-form{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    margin-top:10em;
+}
+.fourOfour-page img{
+    width:50%;
+}
+.repayment-btn{
+    display:inline-block;
+    width:30%;   
+}
+.admin-btn{
+    display:inline-block;
+    width:30%;
+}
+
+
+}
+
+@media only screen and (min-width:1024px){
+    .container{
+        display:grid;
+        grid-template-areas: 
+        "cta graphics graphics"
+        "cta graphics graphics"
+        "showcase showcase showcase"
+    }
+    .graphics{
+        grid-area: graphics;
+        align-items: center;
+        justify-items:center;
+        align-content: center;
+
+    }
+    .graphics img{
+        width:80%;
+        margin-right:10em;
+        margin-top:3em;
+    }
+    .call-to-action{
+        grid-area: cta;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align:start;
+        margin-left:5em;
+        margin-top:5em;
+    }
+    .call-to-action a{
+        text-align:center;
+        text-transform: uppercase;
+        border-radius:6px;  
+    }
+    .call-to-action p{
+        font-size: 1em;
+        margin:0;
+    }
+    .call-to-action h1{
+        margin:0;
+    }
+    .showcase{
+        grid-area: showcase;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        margin-top: 7em;
+        align-content: center;
+        margin-left: auto;
+        margin-right:auto;
+        grid-gap:50px;
+        
+    }
+    .feature{
+        height:50%;
+        display:grid;
+        align-items: center;
+        justify-items: center;
+        align-content: center;
+    }
+    .feature h3{
+        margin:0;
+        
+    }
+    .feature p{
+        margin:0;
+        
+    }
+    .show-desktop{
+        display:block;
+        margin:0 1em 13% 1em;
+    }
+
+    .hide-desktop{
+        display:none;
+
+    }
+    nav ul{
+        position:inherit;
+        width:auto;
+        background: none;
+        height:auto;
+        display:flex;
+        padding-top:0;
+    }
+
+    header{
+        height:50px;
+        padding-top:2em;
+    }
+
+    nav ul li{
+        float:left;
+        margin-right:2em;
+        padding:0;
+    }
+
+    nav ul li a{
+        color:var(--font1);
+        background-color: inherit;
+        padding:.4em 1em;
+        text-align: left;
+        text-transform: uppercase;
+        
+        font-size:11px;
+        text-align:center;  
+
+    }
+    nav ul li a:hover{
+        background:var(--base);
+        color:var(--bg);
+
+    }
+    .logo{
+        margin-left:5em;
+    }
+
+    nav ul li:nth-child(5) a{
+        background:var(--base);
+        text-align: center;
+        color:var(--bg);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    nav ul li:nth-child(6) a{
+        
+        text-align: center;
+        border: 2px solid var(--base);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    .footer{
+        margin-bottom:0;
+    }
+
+    .register-form{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        align-items: center;
+        justify-content: center;
+        margin-top:10em;
+        width: 100vw;
+    }
+
+    .confirm--registration{
+        width:70%;
+       
+    }
+    .form-container{
+        width:40%;
+    }
+
+    .toggle-container{
+        margin-bottom:7em;
+        margin-top: .2em;
+    }
+
+    .loan-application img{
+        width:20%;
+        object-fit: contain;
+        margin-left:40%;
+    }
+    .application-modal{
+        width:30%;
+        margin:1em auto 1em auto;
+    }
+    .payments-form{
+        width:30%;
+        margin-left:30%;
+    }
+    .history{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+        grid-gap:0;
+    }
+    
+    .history-content{
+        width:40%;
+       margin-right: -20em;
+        
+    }
+    .repayment-btn{
+        display:inline-block;
+        width:30%;   
+    }
+    .admin-btn{
+        display:inline-block;
+        width:30%;
+    }
+    
+    .verify-user{
+        width:30%;
+        margin-left:30%; 
+    }
+
+   .applications-container{
+       display:grid;
+       grid-template-columns:repeat(5, 1fr) ;
+       width:100%;   
+   }
+   .how-container{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr) ;
+    width:100%;   
+   }
+   .one{
+       margin-right:6em;
+       
+   }
+   .applications{
+       margin-left:3em;
+       
+       
+       width:200px;
+       height:320px;
+       
+   }
+
+   button{
+       display:inline-block;
+       width:40%;
+   }
+   .status-bar{
+       width:100%;
+   }
+   .container{
+       width:100%;
+       height:100%;
+   }
+
+   header{
+       max-width:100vw;
+   }
+
+   .details{
+       max-width:100vw;
+   }
+
+   .about{
+       width:100%;
+       text-align:center;
+       
+   }
+   .about h3{
+        font-weight: normal;
+        line-height:  2;
+   }
+
+   .how-it-works{
+       height:100%;
+       display:grid;
+       grid-template-rows:1fr auto; 
+   }
+
+   .fourOfour-page img{
+    width:50%;
+}
+
+   
+    
+
+
+    
+}
