@@ -442,7 +442,7 @@ button:focus{
     text-transform: uppercase;
     
     font-weight: bold;
-    margin:0 1em;
+    margin:.5em .5em 1em .5em ;
     
     width:100%;
     background:none;
