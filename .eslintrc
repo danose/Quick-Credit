@@ -22,7 +22,8 @@
         "space-before-blocks":["error",{ "functions": "off", "keywords": "off", "classes": "off" }],
         "linebreak-style": 0,
         "prefer-destructuring":0,
-        
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}],
+       
         "padded-blocks": ["error", "always"],
         "no-trailing-spaces": ["error", { "skipBlankLines": true }]
     }
