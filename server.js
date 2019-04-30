@@ -16,11 +16,7 @@ app.use(expressApiVersioning({
   instance: app // passes an instance of express to the entry point
 }, (error, req, res, next) => {
 
-  if (error && error.code === 104){
-
-    require('./api/v1').default(app);
-
-  } else if (error && error.code !== 104){
+  if (error && error.code !== 104){
 
     return res.status(500).send({ message: error.message });
   

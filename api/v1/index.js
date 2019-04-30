@@ -5,8 +5,8 @@ import bodyParser from 'body-parser';
 
 export default (app) => {
 
-  app.get('/api/v1/test', (req, res) => {
-    res.send('hello');
+  app.get('/api/v1/auth/signup', (req, res) => {
+    res.send('sjfh');
   });
 
   app.use(bodyParser.json());                                     

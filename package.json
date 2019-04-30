@@ -4,7 +4,7 @@
   "description": "A fintech app for enabling people get loans easily",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register api/v1/tests/*.js --exit",
+    "test": "nyc mocha --require @babel/register api/v1/tests/*.js --exit",
     "start": "nodemon --exec babel-node server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build1": "babel api/v1 -d dist",
