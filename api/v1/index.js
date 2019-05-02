@@ -1,15 +1,13 @@
-/* eslint-disable padded-blocks */
-/* eslint-disable no-trailing-spaces */
 import bodyParser from 'body-parser';
-
+import users from './routes/users';
 
 export default (app) => {
 
-  app.get('/api/v1/auth/signup', (req, res) => {
-    res.send('sjfh');
-  });
+  app.use('/api/v1', users);
 
-  app.use(bodyParser.json());                                     
-  app.use(bodyParser.urlencoded({ extended: false }));               
+  app.use(bodyParser.json());
+
+  app.use(bodyParser.urlencoded({ extended: false }));
+                 
 
 };
