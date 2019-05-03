@@ -21,7 +21,7 @@ const auth = (req, res, next) => {
     const decoded = jwt.verify(token, secret);
     req.user = {
       id: decoded.userId,
-      isAdmin: decoded.admin
+      isAdmin: decoded.isAdmin
     };
     next();
 

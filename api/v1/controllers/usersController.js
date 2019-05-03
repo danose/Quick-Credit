@@ -17,7 +17,7 @@ class UserController {
 
     }
     const user = UserModel.createUser(req.body);
-    const token = createToken(user.id);
+    const token = createToken(user.id, user.isAdmin);
 
     return res.status(201)
       .header('x-auth-access', token)
@@ -41,7 +41,7 @@ class UserController {
   static signInUsers(req, res) {
 
     const matchedUser = UserModel.getOne(req.body);
-    const token = createToken(matchedUser.id);
+    
     if (!matchedUser) {
 
       return res.status(400).json({
@@ -59,7 +59,7 @@ class UserController {
       });
 
     }
-
+    const token = createToken(matchedUser.id, matchedUser.isAdmin);
     return res.status(200)
       .header('x-auth-access', token)
       .json({
@@ -95,7 +95,18 @@ class UserController {
     
     return res.status(200)
       .json({
-        verified
+        status: 200,
+        data: {
+          id: verified.id,
+          email: verified.email,
+          firstName: verified.firstName,
+          lastName: verified.lastName,
+          password: verified.password,
+          address: verified.address,
+          status: verified.status
+
+        }
+
       });
 
   }

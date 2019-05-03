@@ -125,6 +125,65 @@ describe('Users', () => {
         });
     
     });
+    it('should not create a user a firstName less than 2', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'e',
+          lastName: 'Etiobhio',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.firstName).to.include('first name should be between 2 to 30 characters');
+    
+        });
+    
+    });
+    it('should not create a user a firstName greater than 30', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'edkjadkakaldklakdaldlaljdkjalkdladkdddndndndndnddjdd',
+          lastName: 'Etiobhio',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.firstName).to.include('first name should be between 2 to 30 characters');
+    
+        });
+    
+    });
+    it('should not create a user with firstName containing a number', () => {
+      
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: '56',
+          lastName: 'shsdf',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+          
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+         
+        
+        });
+            
+    });
     
     
     it('should not create a user without a lastName', () => {
@@ -147,6 +206,46 @@ describe('Users', () => {
         });
       
     });
+    it('should not create a user a lastName less than 2', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'dan',
+          lastName: 'e',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.lastName).to.include('last name should be between 2 to 30 characters');
+    
+        });
+    
+    });
+    it('should not create a user a lastName greater than 30', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'edkjadkak',
+          lastName: 'Etiobhioajdkdjkajdnkladlakdakdkdnjbfhbfjkbakjljbdhbshj',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.lastName).to.include('last name should be between 2 to 30 characters');
+    
+        });
+    
+    });
     
     
     it('should not create a user with lastName containing a number', () => {
@@ -163,7 +262,7 @@ describe('Users', () => {
           
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-         
+          
         
         });
             
@@ -188,7 +287,7 @@ describe('Users', () => {
         });
         
     });
-    it('should not create a user with address less than 2 characters', () => {
+    it('should not create a user with address less than 3 characters', () => {
       
       chai.request(app).post(signUpUrl)
         .send({
@@ -204,6 +303,26 @@ describe('Users', () => {
           expect(res.body).to.be.an('object');
           
           expect(res.body.error.address).to.include('address should be not be less than 3 characters');
+          
+        });
+          
+    });
+    it('should not create a user with address not with numbers and letters', () => {
+      
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'Dami',
+          lastName: 'Egjkh',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111',
+          address: '$%&'
+        })
+        .end((err, res) => { 
+        
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.address).to.include('address should contain letters and numbers');
           
         });
           
@@ -228,6 +347,46 @@ describe('Users', () => {
         });
         
     });
+    it('should not create a user with password less than 6', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'dan',
+          lastName: 'essffg',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJ',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.password).to.include('password should be between 6 to 30 characters');
+    
+        });
+    
+    });
+    it('should not create a user with password greater than 30', () => {
+    
+      chai.request(app).post(signUpUrl)
+        .send({
+          firstName: 'edkjadkak',
+          lastName: 'Etiobhioajdkd',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'DeJjaisjiasj111dlsdkllsklkdksdldlddlkdlklsdkdlskldskdlkddsldk',
+          address: 'lagos'
+        })
+        .end((err, res) => { 
+  
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          
+          expect(res.body.error.password).to.include('password should be between 6 to 30 characters');
+    
+        });
+    
+    });
     
     
     it('should not create a user with password not alphanumeric', () => {
@@ -244,9 +403,9 @@ describe('Users', () => {
             
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-         
-          
-              
+          expect(res.body.error.password).to.include('password should contain at least uppercase, lowercase and numbers');
+    
+     
         });
               
     });
@@ -358,26 +517,25 @@ describe('Users', () => {
           
     });
     it('should not sign in a user with incorrect password', () => {
-          
-      chai.request(app).post(signUpUrl)
+    
+      chai.request(app).post(signInUrl)
         .send({
-          firstName: 'Daniel',
+          firstName: 'Dami',
           lastName: 'Etiobhio',
           email: 'etiobhiodaniel@gmail.com',
-          password: 'De1'
-           
+          password: 'ert'
+            
         })
         .end((err, res) => { 
-          
+        
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-         
-          expect(res.body.error.password).to.include('invalid email or password');
-            
+          
+          expect(res.body).to.have.property('error');
+          
         });
-            
+          
     });
-     
     
   });
   
@@ -406,9 +564,9 @@ describe('Users', () => {
         })
         .end((err, res) => {
   
-          expect(res.status).to.equal(404);
+          expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.error).to.include('User email does not exist');
+         
   
         });
   

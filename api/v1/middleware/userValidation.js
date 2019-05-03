@@ -3,7 +3,47 @@
 /* eslint-disable no-useless-escape */
 
    
-// const nameLength = nameString => !nameString.match(/^[a-zA-Z]{2, 20}$/);
+const nameLength = (nameString) => {
+
+  if (nameString.length < 2) {
+
+    return true;
+
+  }
+  return false;
+
+};
+const passwordLength = (nameString) => {
+
+  if (nameString.length < 6) {
+
+    return true;
+
+  }
+  return false;
+
+};
+const passwordLengthMax = (nameString) => {
+
+  if (nameString.length > 30) {
+
+    return true;
+
+  }
+  return false;
+
+};
+
+const nameLengthMax = (nameString) => {
+
+  if (nameString.length > 30) {
+
+    return true;
+
+  }
+  return false;
+
+};
   
 // const passwordLength = (passwordString) => {
   
@@ -27,7 +67,6 @@ const addressLength = (address) => {
   
 const addressFormat = address => address.match(/^[\w\-\s]+$/);
   
-const empty = value => value.match(/^$/);
   
 export const validateSignup = (req, res, next) => {
 
@@ -42,16 +81,18 @@ export const validateSignup = (req, res, next) => {
     error.firstName = 'first name is required';
   
   }
-  if (firstName && empty(firstName.trim())) {
   
-    error.firstName = 'first name is required';
+  if (firstName && nameLength(firstName)) {
+  
+    error.firstName = 'first name should be between 2 to 30 characters';
   
   }
-  // if (firstName && nameLength(firstName)) {
+  if (firstName && nameLengthMax(firstName)) {
   
-  // error.firstName = 'first name should be between 2 to 20 characters';
+    error.firstName = 'first name should be between 2 to 30 characters';
   
-  // }
+  }
+
   if (firstName && !nameFormat(firstName)) {
   
     error.firstname = 'first name should be letters';
@@ -62,16 +103,18 @@ export const validateSignup = (req, res, next) => {
     error.lastName = 'last name is required';
     
   }
-  if (lastName && empty(lastName.trim())) {
+  
+  if (lastName && nameLength(lastName)) {
     
-    error.lastName = 'last name is required';
+    error.lastName = 'last name should be between 2 to 30 characters';
     
   }
-  // if (lastName && !nameLength(lastName)) {
-    
-  // error.lastName = 'last name should be between 2 to 30 characters';
-    
-  // }
+  if (lastName && nameLengthMax(lastName)) {
+  
+    error.lastName = 'last name should be between 2 to 30 characters';
+  
+  }
+
   if (lastName && !nameFormat(lastName)) {
     
     error.lastname = 'last name should be letters';
@@ -82,11 +125,7 @@ export const validateSignup = (req, res, next) => {
     error.email = 'email is required';
       
   }
-  if (email && empty(lastName.trim())) {
-      
-    error.email = 'email is required';
-      
-  }
+  
   if (email && !emailFormat(email)) {
       
     error.email = 'Email address is invalid';
@@ -97,11 +136,7 @@ export const validateSignup = (req, res, next) => {
     error.address = 'address is required';
       
   }
-  if (address && empty(address.trim())) {
-      
-    error.address = 'address is required';
-      
-  }
+  
   if (address && !addressLength(address)) {
       
     error.address = 'address should be not be less than 3 characters';
@@ -117,16 +152,18 @@ export const validateSignup = (req, res, next) => {
     error.password = 'password is required';
         
   }
-  if (password && empty(password.trim())) {
+  
+  if (password && passwordLength(password)) {
         
-    error.password = 'password is required';
+    error.password = 'password should be between 6 to 30 characters';
         
   }
-  // if (password && !passwordLength(password)) {
+  if (password && passwordLengthMax(password)) {
         
-  // error.password = 'password should be between 3 to 30 characters';
+    error.password = 'password should be between 6 to 30 characters';
         
-  // }
+  }
+
   if (password && !passwordFormat(password)) {
         
     error.password = 'password should contain at least uppercase, lowercase and numbers';
@@ -160,51 +197,31 @@ export const validateSignIn = (req, res, next) => {
     error.firstName = 'first name is required';
     
   }
-  if (firstName && empty(firstName.trim())) {
   
-    error.firstName = 'first name is required';
-    
-  }
   if (!lastName) {
   
     error.lastName = 'last name is required';
       
   }
-  if (lastName && empty(lastName.trim())) {
-      
-    error.lastName = 'last name is required';
-      
-  }
+  
   if (!email) {
   
     error.email = 'email is required';
         
   }
-  if (email && empty(lastName.trim())) {
-        
-    error.email = 'email is required';
-        
-  }
+  
   if (!address) {
   
     error.address = 'address is required';
         
   }
-  if (address && empty(address.trim())) {
-        
-    error.address = 'address is required';
-        
-  }
+  
   if (!password) {
   
     error.password = 'password is required';
           
   }
-  if (password && empty(password.trim())) {
-          
-    error.password = 'password is required';
-          
-  }
+  
   if (Object.keys(error).length === 0 && error.constructor === Object) {
   
     return next();

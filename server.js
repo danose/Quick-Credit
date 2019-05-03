@@ -5,6 +5,7 @@
 import express from 'express';
 import path from 'path';
 import expressApiVersioning from 'express-api-versioning';
+import '@babel/polyfill';
 
 const app = express();
 app.use(express.json());

@@ -22,8 +22,8 @@ class Users {
       password: hashedPassword,
       address: data.address,
       email: data.email,
-      status: data.status,
-      isAdmin: false
+      status: 'unverified',
+      isAdmin: data.isAdmin
 
     };
     this.users.push(newUser);
@@ -42,19 +42,16 @@ class Users {
   verifyOne(email) {
 
     
-    return this.users.find(user => user.email === email);
+    return this.users.filter(user => user.email === email)[0];
     
     
   }
 
-  verifyUser(email, data) {
+  verifyUser(id, data) {
 
-    const user = this.verifyOne(email);
+    const user = this.verifyOne(id);
     const index = this.users.indexOf(user);
-    this.users[index].firstName = data.firstName;
-    this.users[index].lastName = data.lastName;
-    this.users[index].email = data.email;
-    this.users[index].address = data.address;
+    
     this.users[index].status = data.status;
 
     return this.users[index];
