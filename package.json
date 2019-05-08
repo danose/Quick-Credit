@@ -4,7 +4,7 @@
   "description": "A fintech app for enabling people get loans easily",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register api/v1/tests/*.js --exit",
+    "test": "nyc mocha --require @babel/register api/v1/tests/*.js --exit",
     "start": "nodemon --exec babel-node server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build1": "babel api/v1 -d dist",
@@ -22,9 +22,11 @@
   },
   "homepage": "https://github.com/danose/Quick-Credit/UI/index.html",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-api-versioning": "^2.0.0",
     "jsonwebtoken": "^8.5.1"
