@@ -1,6 +1,7 @@
 
 const admin = (req, res, next) => {
-
+  
+  // Authorizing the Admin
   if (!req.user.isAdmin) {
 
     return res.status(403)

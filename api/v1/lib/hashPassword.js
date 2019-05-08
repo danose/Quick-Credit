@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 
 class Encrypt {
-
+  
+  // Encrypting user password to enhance security
   static hashPassword(password) {
 
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));

@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+// Authenticating Users
 const secret = process.env.SECRET;
 
 const auth = (req, res, next) => {
