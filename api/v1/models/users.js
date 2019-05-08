@@ -9,7 +9,7 @@ class Users {
 
   }
   
-
+  // Posting user information to the users array
   createUser(data) {
 
     const hashedPassword = Encrypt.hashPassword(data.password);
@@ -33,12 +33,20 @@ class Users {
 
   }
 
+  // Getting one user
   getOne(data) {
 
     return this.users.find(user => user.email === data.email.toLowerCase());
 
   }
 
+  getId(id) {
+
+    return this.users.filter(user => user.id === id)[0];
+
+  }
+
+  // Verifying a user from the users array
   verifyOne(email) {
 
     
@@ -61,5 +69,6 @@ class Users {
 
   
 }
+
 
 export default new Users();
