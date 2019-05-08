@@ -16,21 +16,34 @@ const users = {
   firstName: 'Daniel',
   lastName: 'Etiobhio',
   email: 'etiobhiodaniel@gmail.com',
-  password: 'DeJjaisjiasj111',
-  address: '1 lagos'
+  password: 'eJjjiasj111',
+  address: '1 lagos',
+  isAdmin: false
     
 };
 
-  
+let adminToken;
+ 
 describe('Users', () => {
 
+  
   // Test User Sign Up
   describe('User Sign Up', () => {
 
     it('should create user with correct requirements', () => {
   
       chai.request(app).post(signUpUrl)
-        .send(users)
+        
+        .send({
+    
+          firstName: 'Daniel',
+          lastName: 'Etiobhio',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'eJjjiasj111',
+          address: '1 lagos'
+          
+             
+        })
         .end((err, res) => {
   
           expect(res).to.have.status(201);
@@ -44,10 +57,12 @@ describe('Users', () => {
           expect(res.body.data.email).to.be.a('string');
           expect(res.body.data.address).to.be.a('string');
          
-        
+          
         });
   
     });
+
+    
     it('should not create user with wrong email format', () => {
 
       chai.request(app).post(signUpUrl)
@@ -58,6 +73,7 @@ describe('Users', () => {
             email: 'etioel.com',
             password: 'dejjaisjiasj111',
             address: 'lagos'
+           
               
           }
         )
@@ -66,8 +82,8 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           
           
-          expect(res.body.error.email).to.include('Email address is invalid');
-
+          expect(res.body.error).to.include('Email address is invalid');
+          
         });
       
     });
@@ -86,7 +102,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.email).to.include('email is required');
+          expect(res.body.error).to.include('email is required');
 
         });
 
@@ -120,7 +136,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.firstName).to.include('first name is required');
+          expect(res.body.error).to.include('first name is required');
     
         });
     
@@ -140,7 +156,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.firstName).to.include('first name should be between 2 to 30 characters');
+          expect(res.body.error).to.include('first name should be between 2 to 30 characters');
     
         });
     
@@ -160,7 +176,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.firstName).to.include('first name should be between 2 to 30 characters');
+          expect(res.body.error).to.include('first name should be between 2 to 30 characters');
     
         });
     
@@ -201,7 +217,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
         
-          expect(res.body.error.lastName).to.include('last name is required');
+          expect(res.body.error).to.include('last name is required');
       
         });
       
@@ -221,7 +237,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.lastName).to.include('last name should be between 2 to 30 characters');
+          expect(res.body.error).to.include('last name should be between 2 to 30 characters');
     
         });
     
@@ -241,7 +257,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.lastName).to.include('last name should be between 2 to 30 characters');
+          expect(res.body.error).to.include('last name should be between 2 to 30 characters');
     
         });
     
@@ -282,7 +298,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.address).to.include('address is required');
+          expect(res.body.error).to.include('address is required');
         
         });
         
@@ -302,7 +318,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.address).to.include('address should be not be less than 3 characters');
+          expect(res.body.error).to.include('address should be not be less than 3 characters');
           
         });
           
@@ -322,7 +338,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.address).to.include('address should contain letters and numbers');
+          expect(res.body.error).to.include('address should contain letters and numbers');
           
         });
           
@@ -342,7 +358,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
          
-          expect(res.body.error.password).to.include('password is required');
+          expect(res.body.error).to.include('password is required');
         
         });
         
@@ -362,7 +378,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.password).to.include('password should be between 6 to 30 characters');
+          expect(res.body.error).to.include('password should be between 6 to 30 characters');
     
         });
     
@@ -382,7 +398,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.password).to.include('password should be between 6 to 30 characters');
+          expect(res.body.error).to.include('password should be between 6 to 30 characters');
     
         });
     
@@ -403,7 +419,7 @@ describe('Users', () => {
             
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
-          expect(res.body.error.password).to.include('password should contain at least uppercase, lowercase and numbers');
+          expect(res.body.error).to.include('password should contain at least uppercase, lowercase and numbers');
     
      
         });
@@ -419,7 +435,16 @@ describe('Users', () => {
     it('should sign in with correct requirements', () => {
   
       chai.request(app).post(signInUrl)
-        .send(users)
+        .send({
+    
+          firstName: 'Daniel',
+          lastName: 'Etiobhio',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'eJjjiasj111',
+          address: '1 lagos'
+          
+             
+        })
         .end((err, res) => {
     
           expect(res.status).to.equal(200);
@@ -431,6 +456,52 @@ describe('Users', () => {
         });
     
     });
+    it('should not sign in with wrong password', () => {
+  
+      chai.request(app).post(signInUrl)
+        .send({
+    
+          firstName: 'Daniel',
+          lastName: 'Etiobhio',
+          email: 'etiobhiodaniel@gmail.com',
+          password: 'eJjjfnshdyrmd',
+          address: '1 lagos'
+          
+             
+        })
+        .end((err, res) => {
+    
+          expect(res.status).to.equal(400);
+          expect(res.body).to.be.an('object');
+          expect(res.body.error).to.include('invalid email or password');
+          
+    
+        });
+    
+    });
+    it('should not sign in with wrong email', () => {
+  
+      chai.request(app).post(signInUrl)
+        .send({
+    
+          firstName: 'Daniel',
+          lastName: 'Etiobhio',
+          email: 'etiob@gmail.com',
+          password: 'eJjjiasj111',
+          address: '1 lagos'
+          
+             
+        })
+        .end((err, res) => {
+    
+          expect(res.status).to.equal(400);
+          expect(res.body).to.be.an('object');
+          expect(res.body.error).to.include('invalid email or password');
+    
+        });
+    
+    });
+
     
     it('should not sign in a user with empty email', () => {
   
@@ -447,7 +518,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
          
-          expect(res.body.error.email).to.include('email is required');
+          expect(res.body.error).to.include('email is required');
   
         });
   
@@ -461,7 +532,8 @@ describe('Users', () => {
           firstName: '',
           lastName: 'Etiobhio',
           email: 'etiobhiodaniel@gmail.com',
-          password: 'DeJjaisjiasj111'
+          password: 'DeJjaisjiasj111',
+          address: '1 sjhjd'
           
         })
         .end((err, res) => { 
@@ -469,7 +541,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.firstName).to.include('first name is required');
+          expect(res.body.error).to.include('first name is required');
       
         });
       
@@ -490,7 +562,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
         
-          expect(res.body.error.lastName).to.include('last name is required');
+          expect(res.body.error).to.include('last name is required');
         
         });
         
@@ -511,7 +583,7 @@ describe('Users', () => {
           expect(res).to.have.status(400);
           expect(res.body).to.be.an('object');
           
-          expect(res.body.error.password).to.include('password is required');
+          expect(res.body.error).to.include('password is required');
           
         });
           
@@ -539,15 +611,53 @@ describe('Users', () => {
     
   });
   
-  // Test Verify User
+   
+});
+
+// Test Verify User
+
+describe('verification', () => {
+  
+  // Setting up the admin
+  before(() => {
+
+    chai.request(app).post('/api/v1/auth/signup')
+      .send({
+        
+        firstName: 'ortt',
+        lastName: 'aght',
+        email: 'akps@gmail.com',
+        password: 'eJttttnkdsjs',
+        address: '3 abu',
+        isAdmin: true
+        
+          
+      })
+      .end((err, res) => {
+
+        if (err) throw err;
+
+        adminToken = res.body.data.token;
+        
+
+      });
+
+  });
+
+
   describe('Verify Users', () => {
 
+    
     it('should verify a user with correct email', () => {
 
       chai.request(app).patch('/api/v1/users/etiobhiodaniel@gmail.com/verify')
+
+        .set('x-auth-access', adminToken)
+        
         .send({
           status: 'verified'
         })
+        
         .end((err, res) => {
 
           expect(res.status).to.equal(200);
@@ -558,17 +668,18 @@ describe('Users', () => {
     });
     it('should not verify a user with incorrect email', () => {
 
-      chai.request(app).patch('/api/v1/users/etidaniel@gmail.com/verify')
+      chai.request(app).patch('/api/v1/users/etidangmail.com/verify')
+        .set('x-auth-access', adminToken)
         .send({
           status: 'verified'
         })
         .end((err, res) => {
-  
+
           expect(res.status).to.equal(400);
           expect(res.body).to.be.an('object');
-         
-  
+               
         });
+             
   
     });
 
