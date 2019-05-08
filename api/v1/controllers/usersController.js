@@ -3,7 +3,8 @@ import Encrypt from '../lib/hashPassword';
 import createToken from '../lib/createToken';
 
 class UserController {
-
+  
+  // Registering a user
   static signUpUsers(req, res) {
 
     const matchedUser = UserModel.getOne(req.body);
@@ -37,6 +38,7 @@ class UserController {
       });
 
   }
+  // Sign in users
 
   static signInUsers(req, res) {
 
@@ -75,6 +77,7 @@ class UserController {
 
     
   }
+  // Verify Users
 
   static verifyUser(req, res) {
       
