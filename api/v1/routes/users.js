@@ -9,4 +9,5 @@ const router = express.Router();
 router.post('/auth/signup', validateSignup, UserController.signUpUsers);
 router.post('/auth/signin', validateSignIn, UserController.signInUsers);
 router.patch('/users/:userEmail/verify', [auth, admin], UserController.verifyUser);
+
 export default router;
