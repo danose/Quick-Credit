@@ -8,11 +8,19 @@ script:
   - npm run test
 
 after_success: npm run coverage
+dist: trusty
 addons:
-    code_climate:
-        repo_token: dhgfkgfjhgkfgdsr676483749284ugrygstdkatdyaskfudtwavawtesgdyacSHVMJVSDASZGFVAS,DJFS
-script: istanbul cover npm run test -- -R spec
+  chrome: stable
 before_script:
-  - npm install codeclimate-test-reporter istanbul -g
+  
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-windows-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+
+
 after_script:
-  - codeclimate-test-reporter < ./coverage/lcov.info
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+notifications:
+  email: false
