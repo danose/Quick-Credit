@@ -18,16 +18,16 @@ Quick Credit is an application that provides short term soft loans to individual
 [![Maintainability](https://api.codeclimate.com/v1/badges/00b10bb893f1aba41548/maintainability)](https://codeclimate.com/github/danose/Quick-Credit/maintainability)
 
 
-##Features
+## Features
 
-###Users
+### Users
 
 > * Signup
 > * Signin
 > * Request for only one loan at a time
 > * View repayment History
 
-###Admin
+### Admin
 
 > * Mark a client as verified
 > * View a specific loan application
