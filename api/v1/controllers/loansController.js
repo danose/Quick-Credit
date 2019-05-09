@@ -11,26 +11,41 @@ class LoanController {
   // loan application creation
   createLoan(req, res) {
 
+    
     const user = userModel.getId(req.user.id);
     const { tenor, amount } = req.body;
     
-
+    
     const newLoan = {
 
       id: loans.length + 1,
       status: 'pending',
       tenor: parseInt(tenor, 10),
-      amount: parseFloat(amount)
+      amount: parseFloat(amount),
+      user: user.email
      
     };
+    
     newLoan.interest = parseFloat((0.05 * newLoan.amount).toFixed(2));
     newLoan.paymentInstallment = parseFloat((newLoan.amount + parseFloat(newLoan.interest) / newLoan.tenor).toFixed(2));
     
 
     newLoan.balance = newLoan.amount + newLoan.interest;
     
-     
+         
     loans.push(newLoan);
+    const loanOne = loans.filter(loan => loan.user === newLoan.user);
+    if (loanOne.length > 1) {
+      
+      return res.status(400)
+        .json({
+
+          status: 400,
+          error: 'you can only apply ONE at a time'
+        });
+
+    }
+
 
     return res.status(201)
       .json({

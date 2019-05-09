@@ -86,6 +86,26 @@ describe('Loans', () => {
         });
 
     });
+    it('should not create a loan for user who has applied', () => {
+
+      chai.request(app).post(loanUrl)
+        .set('x-auth-access', token)
+        
+        .send({
+          id: 1,
+          tenor: '2',
+          amount: '20000'
+        })
+        .end((err, res) => {
+
+          
+          expect(res.body).to.be.an('object');
+          expect(res).to.have.status(400);
+          expect(res.body.error).to.include('you can only apply ONE at a time');
+
+        });
+
+    });
     it('should not create a loan with wrong token', () => {
 
       chai.request(app).post(loanUrl)
