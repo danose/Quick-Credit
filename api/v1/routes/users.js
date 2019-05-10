@@ -6,8 +6,9 @@ import admin from '../middleware/admin';
 
 const router = express.Router();
 
-router.post('/auth/signup', validateSignup, UserController.signUpUsers);
-router.post('/auth/signin', validateSignIn, UserController.signInUsers);
-router.patch('/users/:userEmail/verify', [auth, admin], UserController.verifyUser);
+router.post('/auth/signup', validateSignup, UserController.signUpUsers); // User signup
+router.post('/auth/signin', validateSignIn, UserController.signInUsers); // User signin
+router.patch('/users/:userEmail/verify', [auth, admin], UserController.verifyUser); // Verify User
+
 
 export default router;

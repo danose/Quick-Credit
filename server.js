@@ -10,6 +10,14 @@ import '@babel/polyfill';
 const app = express();
 app.use(express.json());
 
+// Root handler
+app.get('/', (req, res) => res.status(200)
+  .json({
+    status: 200,
+    data: 'WELCOME TO QUICK CREDIT APP'
+  }));
+
+// api URL versioning
 app.use(expressApiVersioning({
   apiPath: path.join(__dirname, './api'), // absolute path to the api directory
   test: /\/api\/(v[0-9]+).*/, // regular expression to get the version number from the url

@@ -30,6 +30,7 @@
     "express": "^4.16.4",
     "express-api-versioning": "^2.0.0",
     "jsonwebtoken": "^8.5.1"
+   
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
