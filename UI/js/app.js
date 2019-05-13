@@ -1,27 +1,34 @@
-let menu = document.querySelector('.hide-desktop .fa');
-let nav = document.querySelector('#nav');
-let exit = document.querySelector('#exit');
+// Harmburger menu and close button
+
+const menu = document.querySelector('.hide-desktop .fa');
+const nav = document.querySelector('#nav');
+const exit = document.querySelector('#exit');
 
 
-menu.addEventListener('click', (e)=>{
-    nav.style.display= 'block';
-    e.preventDefault();
+menu.addEventListener('click', (e) => { 
+
+  nav.style.display = 'block';
+  e.preventDefault();
+
+});// harmbuger event listener
+exit.addEventListener('click', (e) => {
+
+  nav.style.display = 'none';
+  e.preventDefault();
+
 });
-exit.addEventListener('click', (e)=>{
-    nav.style.display='none';
-    e.preventDefault();
-});
 
-
+// Dark Mode
 let trans = () => {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition')
+  document.documentElement.classList.add('transition');
+  window.setTimeout(() => {
+
+        document.documentElement.classList.remove('transition') // Dark Mode transition
     }, 1000)
 }
 
 
-
+// Storing the dark mode attributes in local storage
 const darkMode=()=>{
     document.documentElement.setAttribute('data-theme', 'dark');
     trans();
@@ -53,11 +60,11 @@ checkbox.addEventListener('click', function(){
 
 
 
-
-let feedBack = document.querySelector('.register-btn');
+// Feedback display
+const feedBack = document.querySelector('.register-btn');
 feedBack.addEventListener('click', (e)=>{
-    let confirm= document.querySelector('.confirm--registration');
-    confirm.innerHTML= `<p>registration successful</p>`;
+  let confirm = document.querySelector('.confirm--registration');
+  confirm.innerHTML= `<p>registration successful</p>`;
     confirm.style.display='block';
 
     setTimeout(()=>{

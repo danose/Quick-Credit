@@ -12,6 +12,8 @@ html{
     --box:rgb(49, 55, 59);
     --modal:rgb(0,0,0,0.5);
 }
+
+/* variables for dark mode */
 html[data-theme='dark'] {
     --bg: #212047;
     --base:#7672ff;
@@ -34,6 +36,10 @@ p{
     line-height: 1.6em;
 }
 
+h2{
+    margin-top:1em;
+}
+
 ul{
     list-style-type: none;
     margin:0;
@@ -48,6 +54,8 @@ input[type=checkbox]{
 	width: 0;
 	visibility: hidden;
 }
+
+/* Dark mode toggle switch */
 
 label[for=switch] {
 	cursor: pointer;
@@ -100,12 +108,13 @@ html.transition *:after {
     
 }
 
+
 .graphics img{
     width:100%;
     height:100%;
 }
 .graphics{
-    margin-top:1em;
+    margin-top:.5em;
     padding-top:.5em;
     margin-bottom:0; 
     height:100%;
@@ -227,18 +236,16 @@ header{
     position:fixed;
 }
 
-.footer{
+footer{
     background:var(--div-color);
     text-align:center ;
     color:var(--font1);
     margin-bottom: 0;
     padding:.2em;
-    margin-top:2em;
+    
     font-weight:bold;
    
-    left:0;
-    right:0;
-    bottom:0;
+    
 }
 
 nav ul{
@@ -310,8 +317,10 @@ header a img:focus{
     box-shadow: var(--box-shadow);
     border-radius:16px;
     
-    
-    
+}
+
+.application-modal{
+    height:60%;
 }
 .form-container h1{
     text-align: center;
@@ -319,7 +328,7 @@ header a img:focus{
 .form-container h1,h2,h3,h4,p{
     color:var(--font1);
 }
-
+/* forms */
 label[for=firstName],
 label[for=tenor],
 label[for=lastName],
@@ -420,7 +429,7 @@ button:focus{
     background:var(--div-color2);
     grid-template-columns:repeat(2, 1fr); 
     width:100%;
-    border-radius:16px;
+  
     grid-gap:25px;
     padding:1em .5em;
     
@@ -428,7 +437,8 @@ button:focus{
     
 }
 .application-modal{
-    padding-top:3em; 
+    padding-top:3em;
+    height:80%; 
 }
 
 #repay{
@@ -452,7 +462,7 @@ button:focus{
 }
 .status-bar a:focus {   
     outline:none;
-    
+   
 }
 
 
@@ -460,7 +470,8 @@ button:focus{
 .loan-application img{
     width:40%;
     margin-left:8em;
-    background:var(--font1);
+    margin-top:3em;
+    
     padding:1em;
     border-radius: 15%;
 }
@@ -493,7 +504,8 @@ button:focus{
     text-transform: uppercase;
 }
 #repay{
-    margin-top:7em;
+    margin-top:1em;
+    margin-bottom: 2em;
 }
 
 .wrapper{
@@ -566,6 +578,10 @@ button:focus{
     padding-top:1.8em;
     margin:.5em 1em 4em 1em;
 }
+.loan-repayments{
+
+    margin-top:2em;
+}
 
 .fourOfour-page{
     display:grid;
@@ -591,7 +607,7 @@ button:focus{
 
 
 
-
+/* screen sizes 650px and above */
 @media only screen and (min-width:650px){
 
     .graphics img{
@@ -630,6 +646,7 @@ button:focus{
     }
 }
 
+/* screen sizes 840px and above */
 @media only screen and (min-width:840px){
     .graphics img{
         width:50%;
@@ -716,6 +733,7 @@ button{
 
 }
 
+/* screen sizes 1024px and above */
 @media only screen and (min-width:1024px){
     .container{
         display:grid;
@@ -734,7 +752,7 @@ button{
     .graphics img{
         width:80%;
         margin-right:10em;
-        margin-top:3em;
+        margin-top:1em;
     }
     .call-to-action{
         grid-area: cta;
@@ -744,7 +762,7 @@ button{
         justify-content: center;
         text-align:start;
         margin-left:5em;
-        margin-top:5em;
+        margin-top:2em;
     }
     .call-to-action a{
         text-align:center;
@@ -761,7 +779,7 @@ button{
     .showcase{
         grid-area: showcase;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        margin-top: 7em;
+        margin-top: 4em;
         align-content: center;
         margin-left: auto;
         margin-right:auto;
@@ -832,14 +850,14 @@ button{
         margin-left:5em;
     }
 
-    nav ul li:nth-child(5) a{
+    nav ul li:nth-child(6) a{
         background:var(--base);
         text-align: center;
         color:var(--bg);
         padding:.2em .4em;
         border-radius:3px;
     }
-    nav ul li:nth-child(6) a{
+    nav ul li:nth-child(7) a{
         
         text-align: center;
         border: 2px solid var(--base);
@@ -889,8 +907,10 @@ button{
     }
     .history{
         display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
-        grid-gap:15px;;
+        grid-template-columns:repeat(auto-fit, minmax(0px, 1fr));
+        grid-gap:15px;
+        width:100%;
+        margin: 3em;
     }
     
     .history-content{
@@ -935,6 +955,300 @@ button{
        width:200px;
        height:320px;
        
+       
+   }
+
+   #about{
+       
+      width:60%;
+       margin-left:70%;
+      
+      
+   }
+   .admin-bar{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr); 
+    
+    width:100%;
+   }
+   button{
+       display:inline-block;
+       width:40%;
+   }
+   .status-bar{
+       width:100%;
+   }
+   .container{
+       width:100%;
+       height:100%;
+   }
+
+   header{
+       max-width:100%;
+   }
+
+   .details{
+       max-width:100vw;
+   }
+
+   .about{
+       width:100%;
+       text-align:center;
+       
+   }
+   .about h3{
+        font-weight: normal;
+        line-height:  2;
+   }
+
+   .how-it-works{
+       height:100%;
+       display:grid;
+       grid-template-rows:1fr auto; 
+       grid-gap:14px;
+   }
+
+   .fourOfour-page img{
+    width:50%;
+}
+
+   
+    
+
+
+    
+}
+/* screen sizes 2024px and above */
+@media only screen and (min-width:2024px){
+    .container{
+        display:grid;
+        grid-template-areas: 
+        "cta graphics graphics"
+        "cta graphics graphics"
+        "showcase showcase showcase"
+    }
+    .graphics{
+        grid-area: graphics;
+        align-items: center;
+        justify-items:center;
+        align-content: center;
+
+    }
+    .graphics img{
+        width:80%;
+        margin-right:10em;
+        margin-top:1em;
+    }
+    .call-to-action{
+        grid-area: cta;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align:start;
+        margin-left:5em;
+        margin-top:2em;
+    }
+    .call-to-action a{
+        text-align:center;
+        text-transform: uppercase;
+        border-radius:6px;  
+    }
+    .call-to-action p{
+        font-size: 2em;
+        margin:0;
+    }
+    .call-to-action h1{
+        margin:0;
+    }
+    .showcase{
+        grid-area: showcase;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        margin-top: 4em;
+        align-content: center;
+        margin-left: auto;
+        margin-right:auto;
+        grid-gap:50px;
+        
+    }
+    .feature{
+        height:50%;
+        display:grid;
+        align-items: center;
+        justify-items: center;
+        align-content: center;
+    }
+    .feature h3{
+        margin:0;
+        
+    }
+    .feature p{
+        margin:0;
+        
+    }
+    .show-desktop{
+        display:block;
+        margin:0 1em 13% 1em;
+    }
+
+    .hide-desktop{
+        display:none;
+
+    }
+    nav ul{
+        position:inherit;
+        width:auto;
+        background: none;
+        height:auto;
+        display:flex;
+        padding-top:0;
+    }
+
+    header{
+        height:50px;
+        padding-top:2em;
+    }
+
+    nav ul li{
+        float:left;
+        margin-right:2em;
+        padding:0;
+    }
+
+    nav ul li a{
+        color:var(--font1);
+        background-color: inherit;
+        padding:.4em 1em;
+        text-align: left;
+        text-transform: uppercase;
+        
+        font-size:16px;
+        text-align:center;  
+
+    }
+    nav ul li a:hover{
+        background:var(--base);
+        color:var(--bg);
+
+    }
+    .logo{
+        margin-left:5em;
+    }
+
+    nav ul li:nth-child(6) a{
+        background:var(--base);
+        text-align: center;
+        color:var(--bg);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    nav ul li:nth-child(7) a{
+        
+        text-align: center;
+        border: 2px solid var(--base);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    .footer{
+        margin-bottom:0;
+    }
+
+    .register-form{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:20px;
+        grid-template-rows: 1fr;
+        align-items: center;
+        justify-content: center;
+        margin-top:10em;
+        width: 100vw;
+    }
+
+    .confirm--registration{
+        width:70%;
+       
+    }
+    .form-container{
+        width:60%;
+    }
+
+    .toggle-container{
+        margin-bottom:7em;
+        margin-top: .2em;
+    }
+
+    .loan-application img{
+        width:20%;
+        object-fit: contain;
+        margin-left:40%;
+    }
+    .application-modal{
+        width:30%;
+        margin:1em auto 1em auto;
+    }
+    .payments-form{
+        width:30%;
+        margin-left:30%;
+    }
+    .history{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(0px, 1fr));
+        grid-gap:15px;
+        width:100%;
+        margin: 3em;
+    }
+    
+    .history-content{
+        width:40%;
+       margin-right: -20em;
+        
+    }
+    .repayment-btn{
+        display:inline-block;
+        width:30%;   
+    }
+    .admin-btn{
+        display:inline-block;
+        width:30%;
+    }
+    
+    .verify-user{
+        width:30%;
+        margin-left:30%; 
+    }
+
+   .applications-container{
+       display:grid;
+       grid-template-columns:repeat(5, 1fr) ;
+       grid-gap:15px;
+       width:100%;   
+   }
+   .how-container{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr) ;
+    grid-gap:14px;
+    width:100%;   
+   }
+   .one{
+       margin-right:6em;
+       
+   }
+   .applications{
+       margin-left:3em;
+       
+       
+       width:200px;
+       height:320px;
+       
+       
+   }
+
+   #about{
+       
+      width:60%;
+       margin-left:70%;
+      
+      
    }
    .admin-bar{
     display:grid;
@@ -990,5 +1304,289 @@ button{
     
 }
 
+/* screen sizes 4024px and above */
+@media only screen and (min-width:4024px){
+    .container{
+        display:grid;
+        grid-template-areas: 
+        "cta graphics graphics"
+        "cta graphics graphics"
+        "showcase showcase showcase"
+    }
+    .graphics{
+        grid-area: graphics;
+        align-items: center;
+        justify-items:center;
+        align-content: center;
 
+    }
+    .graphics img{
+        width:100%;
+        margin-right:10em;
+        margin-top:1em;
+    }
+    .call-to-action{
+        grid-area: cta;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align:start;
+        margin-left:5em;
+        margin-top:2em;
+    }
+    .call-to-action a{
+        text-align:center;
+        text-transform: uppercase;
+        border-radius:6px;  
+    }
+    .call-to-action p{
+        font-size: 2.5em;
+        margin:0;
+    }
+    .call-to-action h1{
+        margin:0;
+    }
+    .showcase{
+        grid-area: showcase;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        margin-top: 4em;
+        align-content: center;
+        margin-left: auto;
+        margin-right:auto;
+        grid-gap:50px;
+        
+    }
+    .feature{
+        height:50%;
+        display:grid;
+        align-items: center;
+        justify-items: center;
+        align-content: center;
+    }
+    .feature h3{
+        margin:0;
+        
+    }
+    .feature p{
+        margin:0;
+        
+    }
+    .show-desktop{
+        display:block;
+        margin:0 1em 13% 1em;
+    }
+
+    .hide-desktop{
+        display:none;
+
+    }
+    nav ul{
+        position:inherit;
+        width:auto;
+        background: none;
+        height:auto;
+        display:flex;
+        padding-top:0;
+    }
+
+    header{
+        height:50px;
+        padding-top:2em;
+    }
+
+    nav ul li{
+        float:left;
+        margin-right:2em;
+        padding:0;
+    }
+
+    nav ul li a{
+        color:var(--font1);
+        background-color: inherit;
+        padding:.4em 1em;
+        text-align: left;
+        text-transform: uppercase;
+        
+        font-size:11px;
+        text-align:center;  
+
+    }
+    nav ul li a:hover{
+        background:var(--base);
+        color:var(--bg);
+
+    }
+    .logo{
+        margin-left:5em;
+    }
+
+    nav ul li:nth-child(6) a{
+        background:var(--base);
+        text-align: center;
+        color:var(--bg);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    nav ul li:nth-child(7) a{
+        
+        text-align: center;
+        border: 2px solid var(--base);
+        padding:.2em .4em;
+        border-radius:3px;
+    }
+    .footer{
+        margin-bottom:0;
+    }
+
+    .register-form{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap:20px;
+        grid-template-rows: 1fr;
+        align-items: center;
+        justify-content: center;
+        margin-top:10em;
+        width: 100vw;
+    }
+
+    .confirm--registration{
+        width:70%;
+       
+    }
+    .form-container{
+        width:40%;
+    }
+
+    .toggle-container{
+        margin-bottom:7em;
+        margin-top: .2em;
+    }
+
+    .loan-application img{
+        width:20%;
+        object-fit: contain;
+        margin-left:40%;
+    }
+    .application-modal{
+        width:60%;
+        margin:1em auto 1em auto;
+    }
+    .payments-form{
+        width:60%;
+        margin-left:30%;
+    }
+    .history{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap:15px;
+        width:100%;
+        margin: 3em;
+    }
+    
+    .history-content{
+        width:60%;
+       margin-right: -20em;
+        
+    }
+    .repayment-btn{
+        display:inline-block;
+        width:30%;   
+    }
+    .admin-btn{
+        display:inline-block;
+        width:50%;
+    }
+    
+    .verify-user{
+        width:60%;
+        margin-left:30%; 
+    }
+
+   .applications-container{
+       display:grid;
+       grid-template-columns:repeat(5, 1fr) ;
+       grid-gap:15px;
+       width:100%;   
+   }
+   .how-container{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr) ;
+    grid-gap:14px;
+    width:100%;   
+   }
+   .one{
+       margin-right:6em;
+       
+   }
+   .applications{
+       margin-left:3em;
+       
+       
+       width:200px;
+       height:320px;
+       
+       
+   }
+
+   #about{
+       
+      width:60%;
+       margin-left:70%;
+      
+      
+   }
+   .admin-bar{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr); 
+    
+    width:100%;
+   }
+   button{
+       display:inline-block;
+       width:40%;
+   }
+   .status-bar{
+       width:100%;
+   }
+   .container{
+       width:100%;
+       height:100%;
+   }
+
+   header{
+       max-width:100%;
+   }
+
+   .details{
+       max-width:100vw;
+   }
+
+   .about{
+       width:100%;
+       text-align:center;
+       
+   }
+   .about h3{
+        font-weight: normal;
+        line-height:  2;
+   }
+
+   .how-it-works{
+       height:100%;
+       display:grid;
+       grid-template-rows:1fr auto; 
+       grid-gap:14px;
+   }
+
+   .fourOfour-page img{
+    width:50%;
+}
+
+   
+    
+
+
+    
+}
 
