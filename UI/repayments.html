@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <div class="wrapper">
+    <!--Header-->
     <header>
             <a href="index.html" class="logo--box">
                 <img src="images/logo.svg" alt="Quick Credit" class="logo">
@@ -37,8 +37,12 @@
                 </div>  
             
     </header>
-        <div class="admin">
+
+     <!--Admin dashboard-->
+    <div class="admin">
             <h1>admin dashboard</h1>
+
+              <!--Admin status bar-->
             <div class="status-bar admin-bar">
                     <a href="admin.html">Verification</a>
                     <a href="approval.html">approval</a>
@@ -47,13 +51,10 @@
                     <a href="paymentstatus.html">status</a>
             </div>
 
-            <div class="loan-repayments form-container verify-user">
-                <form action="" >
-                    <h2 id="admin-header">loan repayment record</h2>
-                    <label for="amount">Amount</label>
-                    <input type="text" name="amount" placeholder="Enter amount" >
-                    <label for="amount">Monthly Installment</label>
-                    <input type="text" name="monthly-installment" placeholder="Enter amount" >
+              <!--Admin posting repayment history-->
+            <div class="form-container verify-user">
+                <form action="" class="loan-repayments" >
+                    <h2>repayment</h2>
                     <label for="amount">Amount Paid</label>
                     <input type="text" name="paid-amount" placeholder="Enter amount" >
                     <button type="submit" class="admin-btn register-btn">Create</button>
@@ -63,8 +64,9 @@
    
             </div>
             
-        </div>
-    </div> 
+    </div>
+   
+    
     <footer>
             <div class="footer">
                 
