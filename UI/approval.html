@@ -26,7 +26,6 @@
                     <li><a href="details.html">Home</a></li>
                     <li><a href="how.html">how it works</a></li>
                     <li><a href="admin.html">Admin</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="signin.html">Sign in</a></li>
                     <li><a href="signup.html">Register</a></li>
 
@@ -41,7 +40,7 @@
 
     <!--Admin dashboard-->
     <div class="admin">
-            <h1>admin dashboard</h1>
+          
             <div class="status-bar admin-bar">
                     <a href="admin.html">Verification</a>
                     <a href="approval.html">approval</a>
@@ -52,32 +51,60 @@
 
              <!--Approving or rejecting loan applications-->
 
-            <div class="approve-application form-container verify-user">
-                
-                <div class="approval">
-                    <h2 id="admin-header">approval</h2>
-                    <div class="loan-amount">
-                        <h3>loan amount</h3>
-                        <p></p>
-                    </div>
-                    <div class="tenor">
-                         <h3>tenor</h3>
-                         <p></p>
-                    </div>
-                    <div class="monthly-installment">
-                         <h3>monthly-installment</h3>
-                         <p></p>
-                    </div>
-
-                    <button class="admin-btn register-btn">approve</button>
-                    <button class="admin-btn register-btn">reject</button>
-                    <div class="confirm--resgistration"></div>
-
-
-                    
-                </div>
-                
-            </div>
+             <div class="table approve-table">
+                    <h1>approval</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                    <th>loanId</th>
+                                    <th>Loan Amount</th>
+                                    <th>Tenor</th>
+                                    <th>Status</th>
+                                    <th>Monthly Installment</th>
+                                    <th>interest</th>
+                                    <th>approve</th>
+                                    <th>reject</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                        <tr>
+                                <td>1</td>
+                                <td>10000.00</td>
+                                <td>4</td>
+                                <td>pending</td>
+                                <td>875.00</td>
+                                <td>500</td>
+                                <td> <button class="approve-btn" >approve</button></td>
+                                <td> <button class="reject-btn" >reject</button></td>
+            
+                        </tr>
+                        <tr>
+                                <td>2</td>
+                                <td>10000.00</td>
+                                <td>4</td>
+                                <td>pending</td>
+                                <td>875.00</td>
+                                <td>500</td>
+                                <td> <button class="approve-btn" >approve</button></td>
+                                <td> <button class="reject-btn" >reject</button></td> 
+            
+                        </tr>
+                        <tr>
+                                <td>3</td>
+                                <td>10000.00</td>
+                                <td>4</td>
+                                <td>pending</td>
+                                <td>875.00</td>
+                                <td>500</td>
+                                <td> <button class="approve-btn" >approve</button></td>
+                                <td> <button class="reject-btn" >reject</button></td>
+                        </tr>
+                            
+            
+                        </tbody>
+                    </table>
+                    </div>        
             
         </div>
     
