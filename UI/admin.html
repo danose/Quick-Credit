@@ -26,7 +26,6 @@
                     <li><a href="details.html">Home</a></li>
                     <li><a href="how.html">how it works</a></li>
                     <li><a href="admin.html">Admin</a></li>
-                    <li><a href="about.html">About</a></li>
                     <li><a href="signin.html">Sign in</a></li>
                     <li><a href="signup.html">Register</a></li>
 
@@ -41,7 +40,7 @@
 
     <!--Admin dashboard-->
     <div class="admin">
-            <h1>admin dashboard</h1> 
+           
 
             <!--Admin status bar-->
             <div class="status-bar admin-bar">
@@ -53,35 +52,62 @@
             </div>
 
             <!--Verification of users page-->
-            <div class="verify-user form-container">
+        
+        <div class="table verify-table">
+        <h1>verification</h1>
+        <table>
+            <thead>
+                <tr>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Password</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>verify</th>
+                </tr>
                 
-                <div class="verification">
-                    <h2 id="admin-header">Verification</h2>
-                    <div class="first-name">
-                        <h3>First name : <p></p></h3>
-                        
-                    </div>
-                    <div class="last-name">
-                         <h3>last name : <p>2</p></h3>
-                         
-                    </div>
-                    <div class="address">
-                         <h3>address : <p></p></h3>
-                         
-                    </div>
+            </thead>
+            <tbody>
+            <tr>
+                    <td>james@gmail.com</td>
+                    <td>James</td>
+                    <td>Ola</td>
+                    <td>1hmf2t32</td>
+                    <td>2 asemota street</td>
+                    <td>verified</td>
+                    <td> <button >verify</button></td>
 
-                    <button class="admin-btn register-btn">verify</button>
-                    
-                </div>
-                <div class="confirm--resgistration"></div>
+            </tr>
+            <tr>
+                    <td>jane@andela.ng</td>
+                    <td>Jane</td>
+                    <td>Abraham</td>
+                    <td>1hmf32</td>
+                    <td>4 jos street </td>
+                    <td>unverified</td>
+                    <td> <button class="verify">verify</button></td>
+
+            </tr>
+            <tr>
+                    <td>dafe@andela.ng</td>
+                    <td>Dafe</td>
+                    <td>Messi</td>
+                    <td>1hmf32</td>
+                    <td>4 camp nou </td>
+                    <td>unverified</td>
+                    <td> <button class="verify">verify</button></td>
+
+            </tr>
                 
-            </div>
-            
-        </div>
 
+            </tbody>
+        </table>
+        </div>        
+    </div>
         <!--Footer-->
 
-        <footer>
+    <footer>
                 <div class="footer">
                     
                     <div class="legal">
@@ -89,7 +115,7 @@
                     </div>
                 </div>
     
-        </footer>  
+    </footer>  
         
    
     
