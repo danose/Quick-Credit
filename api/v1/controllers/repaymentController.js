@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
-import loanController from './loansController';
+import loanModel from '../models/loans';
+import repaymentModel from '../models/repayment';
 
-const repayment = [];
 
 class RepaymentController {
 
@@ -9,7 +9,7 @@ class RepaymentController {
 
   createRepayment(req, res) {
 
-    const loan = loanController.getOne(parseInt(req.params.loanId, 10));
+    const loan = loanModel.getOne(parseInt(req.params.loanId, 10));
     if (!loan) {
 
       return res.status(404)
@@ -19,31 +19,9 @@ class RepaymentController {
         });
 
     }
+    
 
-    const date = new Date();
-    date.setUTCHours(0, 0, 0, 0);
-    const newRepayment = {
-      id: repayment.length + 1,
-      loanId: loan.id,
-      amount: loan.amount,
-      monthlyInstallment: loan.paymentInstallment,
-      paidAmount: parseFloat(req.body.paidAmount),
-      createdOn: date.toISOString()
-    };
-
-    newRepayment.balance = parseFloat(((newRepayment.amount + loan.interest) - parseFloat(newRepayment.paidAmount)).toFixed(2));
-    loan.balance = newRepayment.balance;
-    loan.createdOn = newRepayment.createdOn;
-    if (loan.balance === 0) {
-
-      loan.repaid = true;
-
-    }
-    if (loan.balance > 0) {
-
-      loan.repaid = false;
-
-    }
+    const newRepayment = repaymentModel.create(req.body, req.params);
 
     if (newRepayment.paidAmount > newRepayment.amount + loan.interest) {
 
@@ -55,9 +33,7 @@ class RepaymentController {
 
     }
 
-    repayment.push(newRepayment);
-
-    
+     
     return res.status(201)
       .json({
 
@@ -68,19 +44,14 @@ class RepaymentController {
 
 
   }
-  // comparing id in repayment array with loan id
+  
 
-  getOne(id) {
-
-    return repayment.find(repay => repay.loanId === id);
-
-  }
   // Getting a repayment history
   
   getRepayment(req, res) {
 
     
-    const repaymentVerification = loanController.getOne(parseInt(req.params.loanId, 10));
+    const repaymentVerification = loanModel.getOne(parseInt(req.params.loanId, 10));
     if (!repaymentVerification) {
 
       return res.status(404)
@@ -90,8 +61,7 @@ class RepaymentController {
         });
 
     }
-    const repayOne = repayment
-      .filter(repay => repay.loanId === parseInt(req.params.loanId, 10))[0];
+    const repayOne = repaymentModel.getOne(parseInt(req.params.loanId, 10));
     return res.status(200)
       .json({
         status: 200,
