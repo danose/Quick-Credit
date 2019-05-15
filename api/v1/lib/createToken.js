@@ -8,7 +8,7 @@ const secret = process.env.SECRET;
 
 const createToken = (id, admin) => {
 
-  const token = jwt.sign({ userId: id, isAdmin: admin }, secret, { expiresIn: '7d' });
+  const token = jwt.sign({ userId: id, isAdmin: admin }, secret, { expiresIn: '100d' });
   return token;
   
 };
