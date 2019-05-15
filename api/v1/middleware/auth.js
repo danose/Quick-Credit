@@ -16,8 +16,11 @@ const auth = (req, res, next) => {
         status: 401,
         error: 'Access denied. No token provided'
       });
+  
 
   }
+
+  
   try {
 
     const decoded = jwt.verify(token, secret);
