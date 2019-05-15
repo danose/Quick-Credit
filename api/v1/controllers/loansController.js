@@ -1,52 +1,33 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable import/no-cycle */
-
-import userModel from '../models/users';
-
-const loans = [];
+import loanModel from '../models/loans';
+import UserModel from '../models/users';
 
 class LoanController {
 
+ 
   // loan application creation
+
   createLoan(req, res) {
 
     
-    const user = userModel.getId(req.user.id);
-    const { tenor, amount } = req.body;
-    
-    
-    const newLoan = {
+    const repaid = loanModel.getRepaidStatus();
+    const user = UserModel.getId(req.user.id);
+    const getEmail = loanModel.getUserEmail(user.email);
+    if (getEmail && repaid) {
 
-      id: loans.length + 1,
-      status: 'pending',
-      tenor: parseInt(tenor, 10),
-      amount: parseFloat(amount),
-      user: user.email
-     
-    };
-    
-    newLoan.interest = parseFloat((0.05 * newLoan.amount).toFixed(2));
-    newLoan.paymentInstallment = parseFloat((newLoan.amount + parseFloat(newLoan.interest) / newLoan.tenor).toFixed(2));
-    
-
-    newLoan.balance = newLoan.amount + newLoan.interest;
-    
-         
-    loans.push(newLoan);
-    const loanOne = loans.filter(loan => loan.user === newLoan.user);
-    if (loanOne.length > 1) {
-      
       return res.status(400)
         .json({
 
           status: 400,
-          error: 'you can only apply ONE at a time'
+          error: 'you must repay before applying'
         });
 
     }
-
-
+    
+    
+    const newLoan = loanModel.create(req.body, req.user);
     return res.status(201)
       .json({
 
@@ -62,10 +43,7 @@ class LoanController {
           tenor: newLoan.tenor,
           status: newLoan.status,
           paymentInstallment: newLoan.paymentInstallment,
-        
           interest: newLoan.interest
-          
-        
         }
         
         
@@ -73,17 +51,13 @@ class LoanController {
      
 
   }
+
+  
   // Getting a loan from the loan database
-
-  getOne(id) {
-
-    return loans.find(loan => loan.id === id);
-
-  }
 
   getLoan(req, res) {
 
-    const loan = loans.filter(loanOne => loanOne.id === (parseInt(req.params.loanId, 10)))[0];
+    const loan = loanModel.getOne(parseInt(req.params.loanId, 10));
     if (!loan) {
     
       return res.status(404)
@@ -93,6 +67,7 @@ class LoanController {
           error: 'loan not found'
 
         });
+
 
     }
     return res.status(200)
@@ -105,12 +80,14 @@ class LoanController {
 
   }
 
+  
   // Getting loans, all unpaid and repaid loans
 
   getLoans(req, res) {
 
-    const status = req.query.status;
-    const repaid = req.query.repaid;
+    const loans = loanModel.getAll();
+    const { repaid, status } = req.query;
+    
 
     if (!status && !repaid) {
 
@@ -122,15 +99,17 @@ class LoanController {
         });
 
     }
+
     if (status === 'approved' && repaid === 'false') {
 
+     
       const unPaid = loans.map((loan) => {
 
         if (loan.status === 'approved' && loan.repaid === false) return loan;
   
       
       });
-
+  
       
       return res.status(200)
         .json({
@@ -139,7 +118,6 @@ class LoanController {
           data: unPaid
         });
 
-      
     }
 
     if (status && status === 'approved' && repaid === 'true') {
@@ -161,13 +139,15 @@ class LoanController {
 
     }
 
+    
   }
+
 
   // Approving or rejecting a loan application
   
   approveRejectLoans(req, res) {
 
-    const loan = loans.find(rej => rej.id === (parseInt(req.params.loanId, 10)));
+    const loan = loanModel.getOne(parseInt(req.params.loanId, 10));
     if (!loan) {
     
       return res.status(404)
@@ -180,22 +160,18 @@ class LoanController {
 
     }
 
-    const index = loans.indexOf(loan);
-    
-    loans[index].status = req.body.status;
-
-    const edit = loans[index];
+    const patchedLoan = loanModel.approveLoan(parseInt(req.params.loanId, 10), req.body);
 
     return res.status(200)
       .json({
 
         status: 200,
         data: {
-          loanId: edit.id,
-          loanAmount: edit.amount,
-          status: edit.status,
-          monthlyInstallment: edit.paymentInstallment,
-          interest: edit.interest
+          loanId: patchedLoan.id,
+          loanAmount: patchedLoan.amount,
+          status: patchedLoan.status,
+          monthlyInstallment: patchedLoan.paymentInstallment,
+          interest: patchedLoan.interest
 
         }
       });

@@ -80,13 +80,14 @@ describe('Loans', () => {
         })
         .end((err, res) => {
 
-          
+          expect(res).to.have.status(201);
           expect(res.body).to.be.an('object');
 
         });
 
     });
-    it('should not create a loan for user who has applied', () => {
+    
+    it('should not create a loan for user who has not repaid', () => {
 
       chai.request(app).post(loanUrl)
         .set('x-auth-access', token)
@@ -101,7 +102,26 @@ describe('Loans', () => {
           
           expect(res.body).to.be.an('object');
           expect(res).to.have.status(400);
-          expect(res.body.error).to.include('you can only apply ONE at a time');
+          expect(res.body.error).to.include('you must repay before applying');
+
+        });
+
+    });
+    it('should not create a loan for an admin', () => {
+
+      chai.request(app).post(loanUrl)
+        .set('x-auth-access', adminToken)
+        
+        .send({
+          id: 1,
+          tenor: '2',
+          amount: '20000'
+        })
+        .end((err, res) => {
+
+          
+          expect(res).to.have.status(403);
+          expect(res.body.error).to.include('Access Denied');
 
         });
 
@@ -445,7 +465,7 @@ describe('Loans', () => {
         .end((err, res) => {
 
           expect(res).to.have.status(200);
-          
+         
 
         });
 
@@ -457,7 +477,7 @@ describe('Loans', () => {
         .end((err, res) => {
 
           expect(res).to.have.status(200);
-          
+         
         });
 
     });
@@ -468,6 +488,7 @@ describe('Loans', () => {
         .end((err, res) => {
 
           expect(res).to.have.status(200);
+         
          
         });
 
