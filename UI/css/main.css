@@ -178,18 +178,18 @@ header{
     
     display:grid;
     grid-template-areas:
-    "ease"
+    "easee"
     "fairness"
     "flexibility";
     grid-gap: 30px;
-    height:100%;
+    height:50%;
     width:100%;
     grid-area: showcase; 
-    margin: 1em auto 3em auto;
+    margin: 3em auto 3em auto;
 }
 
-.ease{
-    grid-area:ease;
+.easee{
+    grid-area:easee;
 }
 .fairness{
     grid-area:fairness;
@@ -251,7 +251,7 @@ header{
     letter-spacing: 1px;
     font-size: 1em;
     box-shadow: var(--box-shadow1);
-    border-radius:15px;
+    border-radius:3px;
     font-weight: bold;
     cursor: pointer;
     
@@ -361,6 +361,7 @@ label[for=tenor],
 label[for=lastName],
 label[for=email],
 label[for=amount],
+label[for=phone],
 label[for=payment],
 label[for=password],
 label[for=address]{
@@ -381,8 +382,8 @@ input[type=text]{
     display:block;
     background:var(--div-color2);
     border:1px solid var(--base);
-    border-radius:16px;
-    padding:.4em;
+    border-radius:2px;
+    padding:.8em;
     width:100%;
     color:var(--font1);
 }
@@ -409,7 +410,7 @@ button{
     border:none;
     margin:2.5em 1em 2em 0;
     text-transform: uppercase;
-    border-radius:16px;
+    border-radius:4px;
     width:100%;
     font-weight: bold;
     box-shadow: var(--box-shadow1);
@@ -830,17 +831,29 @@ th{
     }
 
     .showcase{
-        margin-top:-7%;
+    
+        display:grid;
+        grid-template-areas:
+        "easee"
+        "fairness"
+        "flexibility";
+        grid-gap: 30px;
+        height:50%;
+        width:100%;
+        grid-area: showcase; 
+        margin: 3em auto 3em auto;
     }
-
-    .feature p {
-        font-size: 20px;
+    
+    .easee{
+        grid-area:easee;
     }
-    .showcase{
-        width:70%;
-        margin-left:7.5em;
-        
+    .fairness{
+        grid-area:fairness;
     }
+    .flexibility{
+        grid-area:flexibility;
+    }
+    
     .call-to-action a{
         text-align:center;
         text-transform: uppercase;
@@ -939,6 +952,30 @@ button{
     display:inline-block;
     width:30%;
 }
+.showcase{
+    
+    display: flex;
+    margin: 1em auto 1em auto;
+    justify-content: space-evenly;
+    
+ }
+ .feature{
+     height:50%;
+     width:200px;
+     margin-left:10px;
+     margin-right:10px; 
+ }
+ 
+ .feature h3{
+     margin:0;
+     
+ }
+ .feature p{
+     margin:0;
+     font-size:15px;
+     
+ }
+
 
 
 }
@@ -950,9 +987,9 @@ button{
         grid-template-areas: 
         
         "cta graphics "
-        "showcase showcase ";
+        "showcase showcase";
         overflow:hidden;
-        width:100%;
+        
     }
     .graphics{
         grid-area: graphics;
@@ -988,24 +1025,19 @@ button{
     }
     .showcase{
     
-        display:grid;
-        grid-template-areas:
-        "ease fairness flexibility" 
-        ;
+       display: flex;
+       margin: 1em auto 1em auto;
+       justify-content: space-evenly;
        
-        grid-gap: 30px;
-        grid-area: showcase; 
-        margin: 1em auto 3em auto;
     }
     .feature{
         height:50%;
         width:200px;
-        
-       
+        margin-left:10px;
+        margin-right:10px;
+        padding:4em;
     }
-    .showcase .flexibility {
-        margin-left:-2px;
-    }
+    
     .feature h3{
         margin:0;
         
@@ -1209,9 +1241,9 @@ button{
         grid-template-areas: 
         
         "cta graphics "
-        "showcase showcase ";
+        "showcase showcase";
         overflow:hidden;
-        width:100%;
+        
     }
     .graphics{
         grid-area: graphics;
@@ -1247,31 +1279,26 @@ button{
     }
     .showcase{
     
-        display:grid;
-        grid-template-areas:
-        "ease fairness flexibility" 
-        ;
+       display: flex;
+       margin: 1em auto 1em auto;
+       justify-content: space-evenly;
        
-        grid-gap: 30px;
-        grid-area: showcase; 
-        margin: 1em auto 3em auto;
     }
     .feature{
         height:50%;
         width:200px;
-        
-       
+        margin-left:10px;
+        margin-right:10px;
+        padding:4em;
     }
-    .showcase .flexibility {
-        margin-left:-2px;
-    }
+    
     .feature h3{
         margin:0;
         
     }
     .feature p{
         margin:0;
-        font-size:18px;
+        font-size:15px;
         
     }
     .show-desktop{
@@ -1310,7 +1337,7 @@ button{
         text-align: left;
         text-transform: uppercase;
         
-        font-size:14px;
+        font-size:11px;
         text-align:center;  
 
     }
@@ -1357,8 +1384,6 @@ button{
         width:70%;
        
     }
-    
-
     .toggle-container{
         margin-bottom:7em;
         margin-top: .2em;
@@ -1384,8 +1409,6 @@ button{
         width:100%;
         margin: 3em;
     }
-    
-    
     .repayment-btn{
         display:inline-block;
         width:30%;   
@@ -1394,9 +1417,6 @@ button{
         display:inline-block;
         width:30%;
     }
-    
-    
-
    .applications-container{
        display:grid;
        grid-template-columns:repeat(5, 1fr) ;
@@ -1418,9 +1438,7 @@ button{
        
        
        width:200px;
-       height:320px;
-       
-       
+       height:320px;      
    }
 
    .admin-bar{
@@ -1460,18 +1478,17 @@ button{
 }
     
 }
-
-
+    
 /* screen sizes 4024px and above */
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:4024px){
     .container{
         display:grid;
         grid-template-areas: 
         
         "cta graphics "
-        "showcase showcase ";
+        "showcase showcase";
         overflow:hidden;
-        width:100%;
+        
     }
     .graphics{
         grid-area: graphics;
@@ -1499,7 +1516,7 @@ button{
         border-radius:6px;  
     }
     .call-to-action p{
-        font-size: 1.5em;
+        font-size: 1em;
         margin:0;
     }
     .call-to-action h1{
@@ -1507,24 +1524,19 @@ button{
     }
     .showcase{
     
-        display:grid;
-        grid-template-areas:
-        "ease fairness flexibility" 
-        ;
+       display: flex;
+       margin: 1em auto 1em auto;
+       justify-content: space-evenly;
        
-        grid-gap: 30px;
-        grid-area: showcase; 
-        margin: 1em auto 3em auto;
     }
     .feature{
         height:50%;
         width:200px;
-        
-       
+        margin-left:10px;
+        margin-right:10px;
+        padding:4em;
     }
-    .showcase .flexibility {
-        margin-left:-2px;
-    }
+    
     .feature h3{
         margin:0;
         
@@ -1570,7 +1582,7 @@ button{
         text-align: left;
         text-transform: uppercase;
         
-        font-size:15px;
+        font-size:11px;
         text-align:center;  
 
     }
@@ -1720,4 +1732,3 @@ button{
 }
     
 }
-
