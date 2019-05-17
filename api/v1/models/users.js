@@ -27,8 +27,8 @@ class Users {
   }
 
 
-  // Getting one user
   getOne(data) {
+    const text = 'SELECT * FROM users WHERE email'
     return this.users.find(user => user.email === data.email.toLowerCase());
   }
 

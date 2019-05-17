@@ -16,19 +16,17 @@ class UserController {
   static async signUpUsers(req, res) {
     try {
       const user = await UserModel.createUser(req.body);
-      const token = createToken(user.id, user.is_admin);
+      const userInfo = {
+        firstName: user.first_name,
+        email: user.email,
+        lastName: user.last_name,
+        address: user.address,
+        phone: user.phone };
+      const token = createToken(user.id, user.is_admin, userInfo);
       return res.status(201)
-        .header('x-auth-access', token)
         .json({
           status: 201,
-          data: {
-            token,
-            id: user.id,
-            firstName: user.first_name,
-            lastName: user.last_name,
-            email: user.email,
-            phone: user.phone
-          }
+          token
         });
     } catch (error) {
       if (error.routine === '_bt_check_unique') {
@@ -43,18 +41,12 @@ class UserController {
 
   static signInUsers(req, res) {
     const matchedUser = UserModel.getOne(req.body);
-    
     if (!matchedUser) {
-      return res.status(400).json({
-        status: 400,
-        error: 'invalid email or password'
-
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
     }
     if (!Encrypt.comparePassword(matchedUser.password, req.body.password)) {
-      return res.status(400).json({
-        status: 400,
-        error: 'invalid email or password'
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
     }
     const token = createToken(matchedUser.id, matchedUser.isAdmin);
