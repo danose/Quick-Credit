@@ -312,10 +312,15 @@ header a img:focus{
 
 .register-form{
     display:grid;
-    grid-template-rows:.5fr 1fr auto;
-    margin:2em 1em;
-    grid-template-columns: 300x;
+    grid-template-areas:
+    "illustration"
+    "form";
+    margin:1em 1em;
     
+    
+}
+.user{
+    grid-area:form;
 }
 
 .confirm--registration{
@@ -337,14 +342,22 @@ header a img:focus{
 }
 .register-illustration{
     margin-bottom:-2em;
+    grid-area:illustration;
    
 }
 .form-container{
     background:var(--div-color);
-    padding:3em;
     
+    padding:3em;
+    margin-bottom:10em;
+   
+   
+   
     box-shadow: var(--box-shadow);
 }
+
+
+
 
 .application-modal{
     height:60%;
@@ -355,6 +368,7 @@ header a img:focus{
 .form-container h1,h2,h3,h4,p{
     color:var(--font1);
 }
+
 /* forms */
 label[for=firstName],
 label[for=tenor],
@@ -365,8 +379,8 @@ label[for=phone],
 label[for=payment],
 label[for=password],
 label[for=address]{
-    display: block;
-    margin-bottom:.2em;
+   
+   
     text-transform:capitalize; 
     color:var(--font1);
    
@@ -377,14 +391,13 @@ input[type=email],
 input[type=number],
 input[type=password],
 input[type=text]{
-    margin-bottom:1.5em;
-    margin-right: 1em;
-    display:block;
+   
+    margin:0 auto .8em .3em;
     background:var(--div-color2);
-    border:1px solid var(--base);
+    border:none;
     border-radius:2px;
     padding:.8em;
-    width:100%;
+    width:90%;
     color:var(--font1);
 }
 
@@ -419,6 +432,7 @@ button{
     transition: transform ease-in-out .25s;
 
 }
+
 .test{
     display:grid;
     height:100%;
@@ -935,11 +949,12 @@ button{
 }
 .register-form{
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap:24px;
-    align-items: center;
-    justify-content: center;
-    margin-top:10em;
+    grid-template-areas:
+    "illustration form"
+    ;
+    margin:1em 1em;
+    
+    
 }
 .fourOfour-page img{
     width:50%;
@@ -1116,15 +1131,24 @@ button{
     }
 
     .register-form{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap:20px;
-        grid-template-rows: 1fr;
-        align-items: center;
-        justify-content: center;
-        margin-top:10em;
-        width: 100vw;
-    }
+    display:grid;
+    grid-template-areas:
+    "illustration form"
+    ;
+    margin:7em 1em;
+    height:60%;
+   
+}
+.form-container{
+    background:var(--div-color);
+    
+    padding:1em 2em;
+    margin-bottom:10em;
+   
+   
+   
+    box-shadow: var(--box-shadow);
+}
 
     .confirm--registration{
         width:70%;
@@ -1370,20 +1394,31 @@ button{
     }
 
     .register-form{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap:20px;
-        grid-template-rows: 1fr;
-        align-items: center;
-        justify-content: center;
-        margin-top:10em;
-        width: 100vw;
-    }
+    display:grid;
+    grid-template-areas:
+    "illustration form"
+    ;
+    margin:7em 1em;
+    height:60%;
+   
+}
+.form-container{
+    background:var(--div-color);
+    
+    padding:1em 2em;
+    margin-bottom:10em;
+   
+   
+   
+    box-shadow: var(--box-shadow);
+}
 
     .confirm--registration{
         width:70%;
        
     }
+    
+
     .toggle-container{
         margin-bottom:7em;
         margin-top: .2em;
@@ -1409,6 +1444,8 @@ button{
         width:100%;
         margin: 3em;
     }
+    
+    
     .repayment-btn{
         display:inline-block;
         width:30%;   
@@ -1417,6 +1454,9 @@ button{
         display:inline-block;
         width:30%;
     }
+    
+    
+
    .applications-container{
        display:grid;
        grid-template-columns:repeat(5, 1fr) ;
@@ -1438,7 +1478,9 @@ button{
        
        
        width:200px;
-       height:320px;      
+       height:320px;
+       
+       
    }
 
    .admin-bar{
@@ -1615,15 +1657,24 @@ button{
     }
 
     .register-form{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap:20px;
-        grid-template-rows: 1fr;
-        align-items: center;
-        justify-content: center;
-        margin-top:10em;
-        width: 100vw;
-    }
+    display:grid;
+    grid-template-areas:
+    "illustration form"
+    ;
+    margin:7em 1em;
+    height:60%;
+   
+}
+.form-container{
+    background:var(--div-color);
+    
+    padding:1em 2em;
+    margin-bottom:10em;
+   
+   
+   
+    box-shadow: var(--box-shadow);
+}
 
     .confirm--registration{
         width:70%;
