@@ -74,8 +74,30 @@ class UserController {
       });
   }
   
-  // Verify Users
-
+  /**
+     * User verification
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} verified user json object
+     * @returns {object} error object
+     */
+  static async verifyUser(req, res) {
+    try {
+      const verified = await UserModel.verifyUser(req.params.userEmail, req.body);
+      const token = UserController.token(verified);
+      return res.status(200)
+        .json({
+          status: 200,
+          token
+        });
+    } catch (error) {
+      const match = await UserModel.getOne(req.params.userEmail);
+      if (!match) {
+        return res.status(400).json({ status: 404, message: 'User does not exist' });
+      }
+      return res.status(400).json(error);
+    }
+  }
   
 }
 

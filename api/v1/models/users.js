@@ -28,7 +28,7 @@ class Users {
   }
 
   /**
-     * Comparing user email
+     * Comparing user's email
      * @param {object} data
      * @returns {object} object
      */
@@ -38,8 +38,19 @@ class Users {
     return rows[0];
   }
 
+  /**
+     * verifying a user
+     * @param {string} email
+     * @param {object} data
+     * @returns {object} object
+     */
+  async verifyUser(email, data) {
+    const verifyQuery = 'UPDATE users SET status = $1 WHERE email = $2 returning *';
+    const values = [data.status, email];
+    const { rows } = await db.query(verifyQuery, values);
 
-  // Verifying a user from the users array
+    return rows[0];
+  }
 }
 
 
