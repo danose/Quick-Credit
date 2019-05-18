@@ -16,16 +16,9 @@ class UserController {
   static async signUpUsers(req, res) {
     try {
       const user = await UserModel.createUser(req.body);
-      const userInfo = {
-        firstName: user.first_name,
-        email: user.email,
-        lastName: user.last_name,
-        address: user.address,
-        phone: user.phone };
-      const token = createToken(user.id, user.is_admin, userInfo);
+      const token = UserController.token(user);
       return res.status(201)
-        .json({
-          status: 201,
+        .json({ status: 201,
           message: 'success',
           token
         });
@@ -38,6 +31,20 @@ class UserController {
       return res.status(400).json(error);
     }
   }
+
+  static token(param){
+    const userInfo = {
+      firstName: param.first_name,
+      email: param.email,
+      lastName: param.last_name,
+      address: param.address,
+      phone: param.phone,
+      password: param.password,
+      status: param.status };
+    const token = createToken(param.id, param.is_admin, userInfo);
+    return token;
+  }
+  
   
   /**
      * User signin
@@ -47,7 +54,7 @@ class UserController {
      */
 
   static async signInUsers(req, res) {
-    const matchedUser = await UserModel.getOne(req.body);
+    const matchedUser = await UserModel.getOne(req.body.email);
     if (!matchedUser) {
       return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
@@ -56,13 +63,7 @@ class UserController {
       return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
     }
-    const userStat = {
-      firstName: matchedUser.first_name,
-      email: matchedUser.email,
-      lastName: matchedUser.last_name,
-      address: matchedUser.address,
-      phone: matchedUser.phone };
-    const token = createToken(matchedUser.id, matchedUser.is_admin, userStat);
+    const token = UserController.token(matchedUser);
     return res.status(200)
       .json({
         status: 200,
@@ -74,35 +75,7 @@ class UserController {
   
   // Verify Users
 
-  static verifyUser(req, res) {
-    const match = UserModel.verifyOne(req.params.userEmail);
-   
-
-    if (!match) {
-      return res.status(400).json({
-        status: 400,
-        error: 'User email does not exist'
-      });
-    }
-    const verified = UserModel.verifyUser(req.params.userEmail, req.body);
-    
-    
-    return res.status(200)
-      .json({
-        status: 200,
-        data: {
-          id: verified.id,
-          email: verified.email,
-          firstName: verified.firstName,
-          lastName: verified.lastName,
-          password: verified.password,
-          address: verified.address,
-          status: verified.status
-
-        }
-
-      });
-  }
+  
 }
 
 export default UserController;
