@@ -56,17 +56,18 @@ class UserController {
   static async signInUsers(req, res) {
     const matchedUser = await UserModel.getOne(req.body.email);
     if (!matchedUser) {
-      return res.status(400).json({ status: 400, error: 'invalid email or password'
+      return res.status(400).json({ status: 400, message: 'invalid email or password'
       });
     }
     if (!Encrypt.comparePassword(matchedUser.password, req.body.password)) {
-      return res.status(400).json({ status: 400, error: 'invalid email or password'
+      return res.status(400).json({ status: 400, message: 'invalid email or password'
       });
     }
     const token = UserController.token(matchedUser);
     return res.status(200)
       .json({
         status: 200,
+        message: 'success',
         data: {
           token
         }
