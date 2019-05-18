@@ -39,7 +39,38 @@ class UserController {
     }
   }
   
-  
+  /**
+     * User signin
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} user object
+     */
+
+  static async signInUsers(req, res) {
+    const matchedUser = await UserModel.getOne(req.body);
+    if (!matchedUser) {
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
+      });
+    }
+    if (!Encrypt.comparePassword(matchedUser.password, req.body.password)) {
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
+      });
+    }
+    const userStat = {
+      firstName: matchedUser.first_name,
+      email: matchedUser.email,
+      lastName: matchedUser.last_name,
+      address: matchedUser.address,
+      phone: matchedUser.phone };
+    const token = createToken(matchedUser.id, matchedUser.is_admin, userStat);
+    return res.status(200)
+      .json({
+        status: 200,
+        data: {
+          token
+        }
+      });
+  }
   
   // Verify Users
 

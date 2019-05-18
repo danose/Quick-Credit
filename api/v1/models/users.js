@@ -26,7 +26,16 @@ class Users {
     return rows[0];
   }
 
-
+  /**
+     * Comparing user email
+     * @param {object} data
+     * @returns {object} object
+     */
+  async getOne(data) {
+    const text = 'SELECT * FROM users WHERE email = $1';
+    const { rows } = await db.query(text, [data.email]);
+    return rows[0];
+  }
 
 
   // Verifying a user from the users array
