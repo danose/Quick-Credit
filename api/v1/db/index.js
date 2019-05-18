@@ -12,7 +12,6 @@ const pool = new Pool({
 pool.on('connect', () => {
   console.log('connected to the db');
 });
-
 export default {
   /**
      * Database Query
@@ -20,7 +19,6 @@ export default {
      * @param {Array} params
      * @returns {object} object
      */
-
   query(text, params) {
     return new Promise((resolve, reject) => {
       pool.query(text, params)
