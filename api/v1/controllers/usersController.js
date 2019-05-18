@@ -8,8 +8,8 @@ import createToken from '../lib/createToken';
 class UserController {
   /**
      * User signup controller
-     * @param {string} req
-     * @param {Array} res
+     * @param {object} req
+     * @param {object} res
      * @returns {object} user json object
      * @returns {object} error object
      */
@@ -26,43 +26,21 @@ class UserController {
       return res.status(201)
         .json({
           status: 201,
+          message: 'success',
           token
         });
     } catch (error) {
       if (error.routine === '_bt_check_unique') {
-        return res.status(400).json({ status: 400,
-          error: 'user with that EMAIL or phone number already exists'
+        return res.status(409).json({ status: 409,
+          message: 'user with that EMAIL or phone number already exists'
         });
       }
       return res.status(400).json(error);
     }
   }
-  // Sign in users
-
-  static signInUsers(req, res) {
-    const matchedUser = UserModel.getOne(req.body);
-    if (!matchedUser) {
-      return res.status(400).json({ status: 400, error: 'invalid email or password'
-      });
-    }
-    if (!Encrypt.comparePassword(matchedUser.password, req.body.password)) {
-      return res.status(400).json({ status: 400, error: 'invalid email or password'
-      });
-    }
-    const token = createToken(matchedUser.id, matchedUser.isAdmin);
-    return res.status(200)
-      .header('x-auth-access', token)
-      .json({
-        status: 200,
-        data: {
-          token,
-          id: matchedUser.id,
-          firstName: matchedUser.firstName,
-          lastName: matchedUser.lastName,
-          email: matchedUser.email
-        }
-      });
-  }
+  
+  
+  
   // Verify Users
 
   static verifyUser(req, res) {

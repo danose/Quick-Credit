@@ -27,14 +27,7 @@ class Users {
   }
 
 
-  getOne(data) {
-    const text = 'SELECT * FROM users WHERE email'
-    return this.users.find(user => user.email === data.email.toLowerCase());
-  }
 
-  getId(id) {
-    return this.users.filter(user => user.id === id)[0];
-  }
 
   // Verifying a user from the users array
   verifyOne(email) {
