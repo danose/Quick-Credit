@@ -18,17 +18,25 @@ class UserController {
       const user = await UserModel.createUser(req.body);
       const token = UserController.token(user);
       return res.status(201)
+        .header('x-auth-access', token)
         .json({ status: 201,
-          message: 'success',
-          token
+          data: {
+            token,
+            id: user.id,
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email
+          }
+          
         });
     } catch (error) {
       if (error.routine === '_bt_check_unique') {
         return res.status(409).json({ status: 409,
-          message: 'user with that EMAIL or phone number already exists'
+          error: 'user with that EMAIL or phone number already exists'
         });
       }
       return res.status(400).json(error);
+      
     }
   }
 
@@ -41,6 +49,7 @@ class UserController {
       phone: param.phone,
       password: param.password,
       status: param.status };
+    
     const token = createToken(param.id, param.is_admin, userInfo);
     return token;
   }
@@ -54,22 +63,25 @@ class UserController {
      */
 
   static async signInUsers(req, res) {
-    const matchedUser = await UserModel.getOne(req.body.email);
+    const matchedUser = await UserModel.getOneUser(req.body.email);
     if (!matchedUser) {
-      return res.status(400).json({ status: 400, message: 'invalid email or password'
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
     }
     if (!Encrypt.comparePassword(matchedUser.password, req.body.password)) {
-      return res.status(400).json({ status: 400, message: 'invalid email or password'
+      return res.status(400).json({ status: 400, error: 'invalid email or password'
       });
     }
     const token = UserController.token(matchedUser);
     return res.status(200)
       .json({
         status: 200,
-        message: 'success',
         data: {
-          token
+          token,
+          id: matchedUser.id,
+          firstName: matchedUser.first_name,
+          lastName: matchedUser.last_name,
+          email: matchedUser.email
         }
       });
   }
@@ -84,16 +96,23 @@ class UserController {
   static async verifyUser(req, res) {
     try {
       const verified = await UserModel.verifyUser(req.params.userEmail, req.body);
-      const token = UserController.token(verified);
+     
       return res.status(200)
         .json({
           status: 200,
-          token
+          data: {
+            email: verified.email,
+            firstName: verified.first_name,
+            lastName: verified.last_name,
+            password: verified.password,
+            address: verified.address,
+            status: verified.status
+          }
         });
     } catch (error) {
-      const match = await UserModel.getOne(req.params.userEmail);
+      const match = await UserModel.getOneUser(req.params.userEmail);
       if (!match) {
-        return res.status(400).json({ status: 404, message: 'User does not exist' });
+        return res.status(404).json({ status: 404, error: 'User does not exist' });
       }
       return res.status(400).json(error);
     }
