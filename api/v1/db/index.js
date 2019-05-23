@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'development'){
   connect = process.env.DATABASE_DEV;
 }
 if (process.env.NODE_ENV === 'production'){
-  connect = process.env.DATABASE_PROD;
+  connect = process.env.DATABASE_URL;
 }
 
 const pool = new Pool({
