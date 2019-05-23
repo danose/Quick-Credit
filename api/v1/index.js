@@ -4,7 +4,6 @@ import loans from './routes/loans';
 import repayment from './routes/repayment';
 
 export default (app) => {
-
   // Pare the body of incoming routes
   app.use('/api/v1', users);
   app.use('/api/v1', loans);
@@ -14,6 +13,4 @@ export default (app) => {
   app.use(bodyParser.json());
 
   app.use(bodyParser.urlencoded({ extended: false }));
-
-  
 };
