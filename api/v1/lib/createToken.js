@@ -14,17 +14,21 @@ const secret = process.env.SECRET;
      */
 
 const createToken = (id, admin, userInfo) => {
-  const token = jwt.sign({
-    userId: id,
-    isAdmin: admin,
-    firstName: userInfo.firstName,
-    email: userInfo.email,
-    lastName: userInfo.lastName,
-    phone: userInfo.phone,
-    address: userInfo.address,
-    password: userInfo.password,
-    status: userInfo.status
-  }, secret, { expiresIn: '100d' });
+  if (userInfo){
+    const token = jwt.sign({
+      userId: id,
+      isAdmin: admin,
+      firstName: userInfo.firstName,
+      email: userInfo.email,
+      lastName: userInfo.lastName,
+      phone: userInfo.phone,
+      address: userInfo.address,
+      password: userInfo.password,
+      status: userInfo.status
+    }, secret, { expiresIn: '100d' });
+    return token;
+  }
+  const token = jwt.sign({ userId: id, isAdmin: admin }, secret, { expiresIn: '100d' });
   return token;
 };
   

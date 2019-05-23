@@ -1,11 +1,22 @@
+
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
+let connect;
+if (process.env.NODE_ENV === 'test'){
+  connect = process.env.DATABASE_TEST;
+}
+if (process.env.NODE_ENV === 'development'){
+  connect = process.env.DATABASE_DEV;
+}
+if (process.env.NODE_ENV === 'production'){
+  connect = process.env.DATABASE_PROD;
+}
 
 const pool = new Pool({
-
-  connectionString: process.env.DATABASE_URL
+  
+  connectionString: connect
     
 });
 
