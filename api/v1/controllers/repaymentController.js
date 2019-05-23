@@ -1,82 +1,70 @@
 /* eslint-disable import/no-cycle */
-import loanModel from '../models/loans';
-import repaymentModel from '../models/repayment';
+import Repayment from '../models/repayment';
 
 
 class RepaymentController {
-
-  // Posting a loan repayment history
-
-  createRepayment(req, res) {
-
-    const loan = loanModel.getOne(parseInt(req.params.loanId, 10));
-    if (!loan) {
-
-      return res.status(404)
+  /**
+     * Create repayment history
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} repayment json object
+     * @returns {object} error object
+     */
+  async createRepayment(req, res) {
+    try {
+      await Repayment.updateLoan(req.params.loanId, req.body);
+      const newRepayment = await Repayment.createRepayment(req.body, req.params.loanId);
+      const date = new Date();
+      date.setUTCHours(0, 0, 0, 0);
+      return res.status(201)
         .json({
-          status: 404,
-          error: 'loan not found'
+          status: 201,
+          data: newRepayment
         });
-
+    } catch (error){
+      const repaymentVerification = await Repayment.getOneLoan(req.params.loanId);
+      if (!repaymentVerification) {
+        return res.status(404)
+          .json({
+            status: 404,
+            error: 'repayment not found'
+          });
+      }
+      return res.status(400).json(error);
     }
-    
-
-    const newRepayment = repaymentModel.create(req.body, req.params);
-
-    if (newRepayment.paidAmount > newRepayment.amount + loan.interest) {
-
-      return res.status(400)
-        .json({
-          status: 400,
-          error: 'paid amount cannot exceed loan + interest'
-        });
-
-    }
-
-     
-    return res.status(201)
-      .json({
-
-        status: 201,
-        data: newRepayment
-      
-      });
-
-
   }
   
-
-  // Getting a repayment history
+  /**
+     * Get repayment history
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} repayment json object
+     * @returns {object} error object
+     */
   
-  getRepayment(req, res) {
-
-    
-    const repaymentVerification = loanModel.getOne(parseInt(req.params.loanId, 10));
-    if (!repaymentVerification) {
-
-      return res.status(404)
+  async getRepayment(req, res) {
+    try {
+      const repayOne = await Repayment.getOneRepayment(req.params.loanId);
+      return res.status(200)
         .json({
-          status: 404,
-          error: 'repayment not found'
+          status: 200,
+          data: {
+            loanId: repayOne.loan_id,
+            createdOn: repayOne.created_on,
+            monthlyInstallment: repayOne.monthly_installment,
+            amount: repayOne.amount,
+            balance: repayOne.balance
+          }
         });
-
+    } catch (error){
+      const repaymentVerification = await Repayment.getOneLoan(req.params.loanId);
+      if (!repaymentVerification) {
+        return res.status(404)
+          .json({ status: 404, error: 'repayment not found' });
+      }
+      return res.status(400).json(error);
     }
-    const repayOne = repaymentModel.getOne(parseInt(req.params.loanId, 10));
-    return res.status(200)
-      .json({
-        status: 200,
-        data: {
-          loanId: repayOne.loanId,
-          createdOn: repayOne.createdOn,
-          monthlyInstallment: repayOne.monthlyInstallment,
-          amount: repayOne.amount,
-          balance: repayOne.balance
-        }
-      
-      });
-
   }
-
 }
 
 export default new RepaymentController();
