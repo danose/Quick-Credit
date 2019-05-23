@@ -24,14 +24,10 @@ app.use(expressApiVersioning({
   entryPoint: 'index.js', // entry point exports a function which takes an instance of express as parameter.
   instance: app // passes an instance of express to the entry point
 }, (error, req, res, next) => {
-
   if (error && error.code !== 104){
-
     return res.status(500).send({ message: error.message });
-  
   }
   next();
-
 }));
 
 
