@@ -4,13 +4,13 @@
   "description": "A fintech app for enabling low income earners get loans easily",
   "main": "server.js",
   "scripts": {
-    "test": "set NODE_ENV=test&&nyc mocha --require @babel/register api/v1/tests/users.js --exit",
+    "test": "set NODE_ENV=test&&nyc mocha --require @babel/register api/v1/tests/ --exit",
     "dev": "set NODE_ENV=development&&nodemon --exec babel-node server.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build1": "babel api/v1 -d dist/api/v1",
     "build": "npm run build1 && babel server.js -d dist",
-    "start": "set NODE_ENV=production&&node dist/server.js"
-
+    "start": "set NODE_ENV=production&&node dist/server.js",
+    "refresh": "babel-node api/v1/db/migrations/dropTestDb.js dropUserTable && babel-node api/v1/db/migrations/createTestDb.js createUserTable && babel-node api/v1/db/seed/seedUserTable.js seedUserTable"
   },
   "repository": {
     "type": "git",
