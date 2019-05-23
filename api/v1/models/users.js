@@ -32,7 +32,7 @@ class Users {
      * @param {object} data
      * @returns {object} object
      */
-  async getOne(data) {
+  async getOneUser(data) {
     const text = 'SELECT * FROM users WHERE email = $1';
     const { rows } = await db.query(text, [data]);
     return rows[0];
