@@ -10,7 +10,7 @@ class Users {
   
   async createUser(data) {
     const hashedPassword = Encrypt.hashPassword(data.password);
-    const createQuery = `INSERT INTO users (first_name, last_name, password, address, email, status, phone) VALUES($1, $2, $3, $4, $5, $6, $7)
+    const createQuery = `INSERT INTO users (first_name, last_name, password, address, email, status, phone, is_admin) VALUES($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *`;
     const status = 'unverified';
     const newUser = [
@@ -20,27 +20,36 @@ class Users {
       data.address,
       data.email,
       status,
-      data.phone
+      data.phone,
+      data.isAdmin
     ];
     const { rows } = await db.query(createQuery, newUser);
     return rows[0];
   }
 
-
-
-
-  // Verifying a user from the users array
-  verifyOne(email) {
-    return this.users.filter(user => user.email === email)[0];
+  /**
+     * Comparing user's email
+     * @param {object} data
+     * @returns {object} object
+     */
+  async getOne(data) {
+    const text = 'SELECT * FROM users WHERE email = $1';
+    const { rows } = await db.query(text, [data]);
+    return rows[0];
   }
 
-  verifyUser(id, data) {
-    const user = this.verifyOne(id);
-    const index = this.users.indexOf(user);
-    
-    this.users[index].status = data.status;
+  /**
+     * verifying a user
+     * @param {string} email
+     * @param {object} data
+     * @returns {object} object
+     */
+  async verifyUser(email, data) {
+    const verifyQuery = 'UPDATE users SET status = $1 WHERE email = $2 returning *';
+    const values = [data.status, email];
+    const { rows } = await db.query(verifyQuery, values);
 
-    return this.users[index];
+    return rows[0];
   }
 }
 
