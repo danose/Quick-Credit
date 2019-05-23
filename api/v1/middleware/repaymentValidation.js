@@ -1,22 +1,23 @@
 /* eslint-disable import/prefer-default-export */
 
-// Validating the repayments
+/**
+     * Validate repayment
+     * @param {object} req
+     * @param {object} res
+     * @param {object} next
+     * @returns {object} response object
+     */
 export const validateRepayment = (req, res, next) => {
-
   const { paidAmount } = req.body;
-
-  let error;
-
+  const error = {};
   if (!paidAmount) {
-
-    error = 'payment is required';
-
+    error.paidAmount = 'payment is required';
   }
-  
-  if (!error) {
-
+  if (paidAmount > 9999999){
+    error.paidAmount = 'way above limit';
+  }
+  if (Object.keys(error).length === 0 && error.constructor === Object){
     return next();
-
   }
 
   return res.status(400)
@@ -24,5 +25,4 @@ export const validateRepayment = (req, res, next) => {
       status: 400,
       error
     });
-
 };
